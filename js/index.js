@@ -255,7 +255,7 @@
   }
   function updateMapOritation(rotation) {
     if(!rotation) rotation = 0;
-    var mapEl = document.querySelector("#point");
+    var mapEl = document.querySelector("#point svg");
     mapEl.style.transform = "rotate("+rotation+"deg)"
   }
   

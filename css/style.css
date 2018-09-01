@@ -1267,12 +1267,6 @@ body.view-control-buttons .viewControlButton {
 
 #point {
     position: absolute;
-    background-color: purple;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    opacity: 1;
-
 }
 
 .visited {
@@ -1284,36 +1278,40 @@ body.view-control-buttons .viewControlButton {
 }
 
 .locus0{
-  bottom: 10px;
+  bottom: 0px;
   left: 50px;
 }
 .locus1{
-  bottom: 10px;
+  bottom: 0px;
   left: 10px;
+  transform: rotate(90deg)
 }
 .locus2{
   bottom: 50px;
-    left: 55px;
+  left: 55px;
 }
 .locus3{
   bottom: 95px;
     left: 55px;
 }
 .locus4{
-  bottom: 95px;
-    left: 130px;
+  bottom: 86px;
+  left: 130px;
+  transform: rotate(-90deg)
 }
 .locus5{
-  bottom: 95px;
-  left: 170px;}
+  bottom: 86px;
+  left: 170px;
+}
 .locus6{
   bottom: 155px;
-    left: 175px;
-
+  left: 175px;
+  transform: rotate(-90deg);
 }
 .locus7{
   bottom: 155px;
-    left: 200px;
+  left: 200px;
+  transform: rotate(-90deg);
 }
 
 .vr-button {
