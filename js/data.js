@@ -2,7 +2,7 @@ var APP_DATA = {
   "scenes": [
     {
       "id": "0-17th_floor_lobby_center",
-      "name": "17th floor lobby center",
+      "name": "17th Floor Lobby Center",
       "levels": [
         {
           "tileSize": 256,
@@ -57,7 +57,7 @@ var APP_DATA = {
     },
     {
       "id": "1-17th_floor_lobby_west",
-      "name": "17th floor lobby west",
+      "name": "17th Floor Lobby West",
       "levels": [
         {
           "tileSize": 256,
@@ -208,7 +208,7 @@ var APP_DATA = {
         {
           "yaw": -1.5334901841429556,
           "pitch": 0.03460929014540426,
-          "title": "observation unit",
+          "title": "Observation Unit",
           "text": "Observation Unit: This is an extension of the Emergency Department.  Patients admitted to this unit are expected to stay less than 2 days and can be from multiple departments.  It is staffed by providers from the ED."
         },
         {
