@@ -255,16 +255,15 @@
   }
   function updateMapOritation(rotation) {
     if(!rotation) rotation = 0;
+    //Add rotation transform to map indicator
     var mapEl = document.querySelector("#point svg");
-    mapEl.style.transform = "rotate("+rotation+"deg)"
+    mapEl.style.transform = "rotate("+rotation+"deg)";
   }
   
   var positionUpdateTimeout;
   viewer.addEventListener('viewChange', function(e) {
-    clearTimeout(positionUpdateTimeout)
-    positionUpdateTimeout = setTimeout(function(){
-      updateMapOritation(180*viewer.view().yaw()/Math.PI)
-    }, 500)
+    //Take incoming yaw in radians and convert to degrees to set map orientation
+    updateMapOritation(180*viewer.view().yaw()/Math.PI)
   });
 
   function showSceneList() {
