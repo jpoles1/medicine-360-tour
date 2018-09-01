@@ -1246,11 +1246,23 @@ body.view-control-buttons .viewControlButton {
   transition: margin-left 0.5s ease-in-out;
   background-image: url(../img/map.png);
   background-repeat: no-repeat;
-
+  border: 4px solid black;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: none;
 }
 
+.mobile #map{
+  background-color: transparent;
+}
 #map.enabled {
   margin-left: 220px;
+}
+@media (max-height: 540px) {
+  #map {
+    margin-left: 0px !important;
+  }
 }
 
 #point {
