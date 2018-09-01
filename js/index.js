@@ -158,6 +158,8 @@
   // Start with the scene list open on desktop.
   if (!document.body.classList.contains('mobile')) {
     showSceneList();
+  } else {
+    hideSceneList();
   }
 
   // Set handler for scene switch.
@@ -258,11 +260,13 @@
   function showSceneList() {
     sceneListElement.classList.add('enabled');
     sceneListToggleElement.classList.add('enabled');
+    mapElement.classList.add('enabled');
   }
 
   function hideSceneList() {
     sceneListElement.classList.remove('enabled');
     sceneListToggleElement.classList.remove('enabled');
+    mapElement.classList.remove('enabled');
   }
 
   function toggleSceneList() {

@@ -1231,14 +1231,13 @@ body.view-control-buttons .viewControlButton {
   100% { opacity:0; transform: translateX(-9vw); }
 }
 
-.desktop #map {
+#map {
   position:absolute;
   left: -220px;
   bottom: 50px;
   visibility: visible;
   width: 220px;
   height: 220px;
-  max-width:20%;
   background-color: #333;
   background-color: rgb(58,68,84);
   background-color: rgba(58,68,84,0.8);
@@ -1250,7 +1249,7 @@ body.view-control-buttons .viewControlButton {
 
 }
 
-.desktop #map.enabled {
+#map.enabled {
   margin-left: 220px;
 }
 
