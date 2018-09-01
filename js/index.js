@@ -246,16 +246,26 @@
   }
 
   function updateMapPosition(scene) {
-
-
     var mapEl = document.querySelector("#point");
     var sceneId = scene.data.id.split("-");
     var newPosition = "locus" + sceneId[0];
     var oldPosition = mapEl.classList.value;
     mapEl.classList.remove(oldPosition);
     mapEl.classList.add(newPosition);
-
   }
+  function updateMapOritation(rotation) {
+    if(!rotation) rotation = 0;
+    var mapEl = document.querySelector("#point");
+    mapEl.style.transform = "rotate("+rotation+"deg)"
+  }
+  
+  var positionUpdateTimeout;
+  viewer.addEventListener('viewChange', function(e) {
+    clearTimeout(positionUpdateTimeout)
+    positionUpdateTimeout = setTimeout(function(){
+      updateMapOritation(180*viewer.view().yaw()/Math.PI)
+    }, 500)
+  });
 
   function showSceneList() {
     sceneListElement.classList.add('enabled');
