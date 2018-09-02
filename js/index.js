@@ -604,24 +604,26 @@
       });
     }
   }
-
+  var hotspotsTotal = 0; 
+  var hotspotsClicked = 0;
   function hotspotVisited() {
     var icon = '<i class="fas fa-check-circle green"></i>';
     var elements =  document.querySelectorAll(".hotspot .info-hotspot-icon-wrapper");
-
+    hotspotsTotal = elements.length;
+    document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
     elements.forEach(function (hotspot) {
       hotspot.addEventListener("click", function(e){
          var target = (e.target) ? e.target : e.srcElement;
          var newEl = document.createElement("i");
 
         if ( !target.parentNode.classList.contains('clicked') ) {
-             target.parentNode.appendChild(newEl);
-             newEl.classList.add('fas' , 'fa-check-circle', 'visited');
-
-            console.log(target);
-          }
-           target.parentNode.classList.add("clicked");
-
+          target.parentNode.appendChild(newEl);
+          newEl.classList.add('fas' , 'fa-check-circle', 'visited');
+          console.log(target);
+        }
+          target.parentNode.classList.add("clicked");
+          hotspotsClicked++;
+          document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
       });
     });
   }
@@ -645,8 +647,9 @@
   }
 
   // Display the initial scene.
-  switchScene(scenes[0]);
-  hotspotVisited();
-
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    switchScene(scenes[0]);
+    hotspotVisited();
+  })
 
 })();
