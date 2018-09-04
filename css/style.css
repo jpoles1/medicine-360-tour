@@ -1190,6 +1190,10 @@ body.view-control-buttons .viewControlButton {
   transform: rotate(-270deg);
 }
 
+.mobile .arrow{
+  border-width: 8px;
+}
+
 .arrow {
 
   border: 1.5vw solid;
