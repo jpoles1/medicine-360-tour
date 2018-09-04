@@ -422,7 +422,7 @@ var APP_DATA = {
           "yaw": -2.691026906055429,
           "pitch": 0.25773843126706275,
           "title": "MAARTI",
-          "text": "this is our video or audio translation system at Tisch.  It can be brought in to patient rooms to communicate with non-primarily english speaking patients.  Many languages have video interpreting, and if not, it will connect to audio only.  There is an access code on the back of the MAARTI that you will need to initiate your session.",
+          "text": "This is our video or audio translation system at Tisch.  It can be brought in to patient rooms to communicate with non-primarily english speaking patients.  Many languages have video interpreting, and if not, it will connect to audio only.  There is an access code on the back of the MAARTI that you will need to initiate your session.",
           "imageURL":"img/maarti.jpg",
           "actionLink":"https://nyulangone.org" // to image carousel in new window
         }

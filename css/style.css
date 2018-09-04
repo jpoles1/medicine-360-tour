@@ -1344,3 +1344,8 @@ body.view-control-buttons .viewControlButton {
 #no-vr {
   cursor: default;
 }
+
+.info-hotspot-image{
+  margin-top: 15px;
+  max-width: 100%;
+}
