@@ -885,7 +885,7 @@ padding-bottom: 20px;
 
 /* Info hotspot modal */
 
-.desktop .info-hotspot-modal {
+.desktop .info-hotspot-modal:not(.welcome) {
   display: none;
 }
 
@@ -1070,10 +1070,18 @@ body.view-control-buttons .viewControlButton {
   margin-left: 105px;
 }
 
-
-#welcome-modal {
-  height: 300px;
-  top: 20%;
+.desktop .welcome{
+  width: 100%;
+  margin: auto;
+}
+.desktop #welcome-modal {
+  height: 400px;
+  width: 700px;
+  max-width: 100%;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  margin-top: 50px;
 }
 
 #welcome-modal H1 {
