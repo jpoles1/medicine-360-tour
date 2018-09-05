@@ -157,7 +157,12 @@
 
   // Start with the scene list open on desktop.
   if (!document.body.classList.contains('mobile')) {
-    showSceneList();
+    document.querySelector("#welcome-modal .info-hotspot-close-wrapper").addEventListener("click", function(){
+      showSceneList();
+    })
+    document.querySelector(".info-hotspot-modal.welcome").addEventListener("click", function(){
+      showSceneList();
+    })
   } else {
     hideSceneList();
   }
@@ -265,7 +270,7 @@
     //Take incoming yaw in radians and convert to degrees to set map orientation
     updateMapOritation(180*viewer.view().yaw()/Math.PI)
   });
-
+  
   function showSceneList() {
     sceneListElement.classList.add('enabled');
     sceneListToggleElement.classList.add('enabled');
