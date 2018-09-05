@@ -1250,11 +1250,11 @@ body.view-control-buttons .viewControlButton {
   transition: margin-left 0.5s ease-in-out;
   background-image: url(../img/map.png);
   background-repeat: no-repeat;
-  border: 4px solid black;
+  /* border: 4px solid black;
   border-top-style: solid;
   border-right-style: solid;
   border-bottom-style: solid;
-  border-left-style: none;
+  border-left-style: none; */
 }
 
 .mobile #map{
@@ -1316,6 +1316,49 @@ body.view-control-buttons .viewControlButton {
   bottom: 155px;
   left: 200px;
   transform: rotate(-90deg);
+}
+
+.desktop #hotspotCounter {
+  position: absolute;
+  min-width:200px;
+  bottom: 50px;
+  left: 50%;
+  margin-left: -100px;
+  text-align: center;
+  background-color: #333;
+  background-color: rgb(58,68,84);
+  background-color: rgba(58,68,84,0.8);
+  padding: 20px;
+
+}
+.button, button, input[type="submit"], input[type="reset"], input[type="button"] {
+
+  display: inline-block;
+  height: 38px;
+  padding: 0 30px;
+  color: #555;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: .1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.start-btn button {
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  padding-bottom: 2em;
+  font-size: 1em;
+
 }
 
 .vr-button {
