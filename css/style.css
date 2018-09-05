@@ -1076,7 +1076,7 @@ body.view-control-buttons .viewControlButton {
 }
 
 .desktop #welcome-modal {
-  height: 400px;
+  min-height: 400px; 
   width: 700px;
   max-width: 100%;
   text-align: center;
@@ -1378,8 +1378,8 @@ body.view-control-buttons .viewControlButton {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
-  padding-bottom: 2em;
+  margin-top: 30px;
+  padding:  0 2em ;
   font-size: 1em;
 
 }

@@ -275,7 +275,7 @@
     //Take incoming yaw in radians and convert to degrees to set map orientation
     updateMapOritation(180*viewer.view().yaw()/Math.PI)
   });
-
+  
   function showSceneList() {
     sceneListElement.classList.add('enabled');
     sceneListToggleElement.classList.add('enabled');
