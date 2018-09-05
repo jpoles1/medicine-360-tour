@@ -1190,6 +1190,10 @@ body.view-control-buttons .viewControlButton {
   transform: rotate(-270deg);
 }
 
+.mobile .arrow{
+  border-width: 8px;
+}
+
 .arrow {
 
   border: 1.5vw solid;
@@ -1231,14 +1235,13 @@ body.view-control-buttons .viewControlButton {
   100% { opacity:0; transform: translateX(-9vw); }
 }
 
-.desktop #map {
+#map {
   position:absolute;
   left: -220px;
   bottom: 50px;
   visibility: visible;
   width: 220px;
   height: 220px;
-  max-width:20%;
   background-color: #333;
   background-color: rgb(58,68,84);
   background-color: rgba(58,68,84,0.8);
@@ -1247,21 +1250,27 @@ body.view-control-buttons .viewControlButton {
   transition: margin-left 0.5s ease-in-out;
   background-image: url(../img/map.png);
   background-repeat: no-repeat;
-
+  border: 4px solid black;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: none;
 }
 
-.desktop #map.enabled {
+.mobile #map{
+  background-color: transparent;
+}
+#map.enabled {
   margin-left: 220px;
+}
+@media (max-height: 540px) {
+  #map {
+    margin-left: 0px !important;
+  }
 }
 
 #point {
     position: absolute;
-    background-color: purple;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    opacity: 1;
-
 }
 
 .visited {
@@ -1273,36 +1282,40 @@ body.view-control-buttons .viewControlButton {
 }
 
 .locus0{
-  bottom: 10px;
+  bottom: 0px;
   left: 50px;
 }
 .locus1{
-  bottom: 10px;
+  bottom: 0px;
   left: 10px;
+  transform: rotate(90deg)
 }
 .locus2{
   bottom: 50px;
-    left: 55px;
+  left: 55px;
 }
 .locus3{
   bottom: 95px;
     left: 55px;
 }
 .locus4{
-  bottom: 95px;
-    left: 130px;
+  bottom: 86px;
+  left: 130px;
+  transform: rotate(-90deg)
 }
 .locus5{
-  bottom: 95px;
-  left: 170px;}
+  bottom: 86px;
+  left: 170px;
+}
 .locus6{
   bottom: 155px;
-    left: 175px;
-
+  left: 175px;
+  transform: rotate(-90deg);
 }
 .locus7{
   bottom: 155px;
-    left: 200px;
+  left: 200px;
+  transform: rotate(-90deg);
 }
 
 .vr-button {
@@ -1334,4 +1347,9 @@ body.view-control-buttons .viewControlButton {
 
 #no-vr {
   cursor: default;
+}
+
+.info-hotspot-image{
+  margin-top: 15px;
+  max-width: 100%;
 }

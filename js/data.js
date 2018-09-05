@@ -2,7 +2,7 @@ var APP_DATA = {
   "scenes": [
     {
       "id": "0-17th_floor_lobby_center",
-      "name": "17th floor lobby center",
+      "name": "17th Floor Lobby Center",
       "levels": [
         {
           "tileSize": 256,
@@ -57,7 +57,7 @@ var APP_DATA = {
     },
     {
       "id": "1-17th_floor_lobby_west",
-      "name": "17th floor lobby west",
+      "name": "17th Floor Lobby West",
       "levels": [
         {
           "tileSize": 256,
@@ -79,7 +79,7 @@ var APP_DATA = {
       ],
       "faceSize": 1344,
       "initialViewParameters": {
-        "yaw": -2.105714564767652,
+        "yaw": 3.111522730584216,
         "pitch": -0.0240143686247265,
         "fov": 1.8073895612144246
       },
@@ -208,7 +208,7 @@ var APP_DATA = {
         {
           "yaw": -1.5334901841429556,
           "pitch": 0.03460929014540426,
-          "title": "observation unit",
+          "title": "Observation Unit",
           "text": "Observation Unit: This is an extension of the Emergency Department.  Patients admitted to this unit are expected to stay less than 2 days and can be from multiple departments.  It is staffed by providers from the ED."
         },
         {
@@ -422,7 +422,7 @@ var APP_DATA = {
           "yaw": -2.691026906055429,
           "pitch": 0.25773843126706275,
           "title": "MAARTI",
-          "text": "this is our video or audio translation system at Tisch.  It can be brought in to patient rooms to communicate with non-primarily english speaking patients.  Many languages have video interpreting, and if not, it will connect to audio only.  There is an access code on the back of the MAARTI that you will need to initiate your session.",
+          "text": "This is our video or audio translation system at Tisch.  It can be brought in to patient rooms to communicate with non-primarily english speaking patients.  Many languages have video interpreting, and if not, it will connect to audio only.  There is an access code on the back of the MAARTI that you will need to initiate your session.",
           "imageURL":"img/maarti.jpg",
           "actionLink":"https://nyulangone.org" // to image carousel in new window
         }

@@ -133,7 +133,7 @@
 
   // Set up autorotate, if enabled.
   var autorotate = Marzipano.autorotate({
-    yawSpeed: 0.03,
+    yawSpeed: 0.06,
     targetPitch: 0,
     targetFov: Math.PI/2
   });
@@ -158,6 +158,8 @@
   // Start with the scene list open on desktop.
   if (!document.body.classList.contains('mobile')) {
     showSceneList();
+  } else {
+    hideSceneList();
   }
 
   // Set handler for scene switch.
@@ -244,25 +246,36 @@
   }
 
   function updateMapPosition(scene) {
-
-
     var mapEl = document.querySelector("#point");
     var sceneId = scene.data.id.split("-");
     var newPosition = "locus" + sceneId[0];
     var oldPosition = mapEl.classList.value;
     mapEl.classList.remove(oldPosition);
     mapEl.classList.add(newPosition);
-
   }
+  function updateMapOritation(rotation) {
+    if(!rotation) rotation = 0;
+    //Add rotation transform to map indicator
+    var mapEl = document.querySelector("#point svg");
+    mapEl.style.transform = "rotate("+rotation+"deg)";
+  }
+  
+  var positionUpdateTimeout;
+  viewer.addEventListener('viewChange', function(e) {
+    //Take incoming yaw in radians and convert to degrees to set map orientation
+    updateMapOritation(180*viewer.view().yaw()/Math.PI)
+  });
 
   function showSceneList() {
     sceneListElement.classList.add('enabled');
     sceneListToggleElement.classList.add('enabled');
+    mapElement.classList.add('enabled');
   }
 
   function hideSceneList() {
     sceneListElement.classList.remove('enabled');
     sceneListToggleElement.classList.remove('enabled');
+    mapElement.classList.remove('enabled');
   }
 
   function toggleSceneList() {
@@ -591,24 +604,26 @@
       });
     }
   }
-
+  var hotspotsTotal = 0; 
+  var hotspotsClicked = 0;
   function hotspotVisited() {
     var icon = '<i class="fas fa-check-circle green"></i>';
     var elements =  document.querySelectorAll(".hotspot .info-hotspot-icon-wrapper");
-
+    hotspotsTotal = elements.length;
+    document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
     elements.forEach(function (hotspot) {
       hotspot.addEventListener("click", function(e){
          var target = (e.target) ? e.target : e.srcElement;
          var newEl = document.createElement("i");
 
         if ( !target.parentNode.classList.contains('clicked') ) {
-             target.parentNode.appendChild(newEl);
-             newEl.classList.add('fas' , 'fa-check-circle', 'visited');
-
-            console.log(target);
-          }
-           target.parentNode.classList.add("clicked");
-
+          target.parentNode.appendChild(newEl);
+          newEl.classList.add('fas' , 'fa-check-circle', 'visited');
+          console.log(target);
+        }
+          target.parentNode.classList.add("clicked");
+          hotspotsClicked++;
+          document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
       });
     });
   }
@@ -632,8 +647,9 @@
   }
 
   // Display the initial scene.
-  switchScene(scenes[0]);
-  hotspotVisited();
-
+  document.addEventListener("DOMContentLoaded", function(event) { 
+    switchScene(scenes[0]);
+    hotspotVisited();
+  })
 
 })();
