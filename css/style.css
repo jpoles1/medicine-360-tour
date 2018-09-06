@@ -74,6 +74,12 @@ a, a:hover, a:active, a:visited {
   text-align: center;
 }
 
+.fa-info {
+  position: absolute;
+  left: 20px;
+  top: 8px;
+}
+
 .mobile #titleBar {
   height: 50px;
   right: 50px;
@@ -393,7 +399,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 
   font-size: 16px;
 
-  max-width: 300px;
+  width: 300px;
 
   padding: 8px 10px;
 
@@ -404,9 +410,9 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 
   color: #fff;
 
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  white-space: pre-wrap;
+  text-overflow: clip;
+  overflow: auto;
 
   cursor: pointer;
 
@@ -473,9 +479,9 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 }
 
 .info-hotspot .info-hotspot-header, .modal-hotspot .info-hotspot-header {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
   background-color: rgb(222, 91, 50);
   cursor: pointer;
   -webkit-transition: width 0.3s ease-in-out 0.5s,
@@ -516,8 +522,8 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot .info-hotspot-icon-wrapper,
 .modal-hotspot .info-hotspot-icon-wrapper
 {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
 .mobile .info-hotspot .info-hotspot-icon-wrapper,
@@ -543,10 +549,10 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot .info-hotspot-title-wrapper
 {
   position: absolute;
-  left: 40px;
+  left: 50px;
   top: 0;
   width: 0;
-  height: 40px;
+  height: 50px;
   padding: 0;
   overflow: hidden;
   -webkit-transition: width 0s 0.4s,
@@ -558,7 +564,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .desktop .info-hotspot.info-text.visible .info-hotspot-title-wrapper,
 .desktop.no-touch .info-hotspot .info-hotspot-header:hover .info-hotspot-title-wrapper
 {
-  width: 220px;
+  width: 200px;
   padding: 0 5px;
   -webkit-transition: width 0s 0.4s,
                       padding 0s 0.4s;
@@ -593,8 +599,8 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
   position: absolute;
   left: 260px;
   top: 0;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
   border-top-right-radius: 5px;
   background-color: rgb(78,88,104);
   visibility: hidden;
@@ -643,10 +649,10 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 
 {
   position: absolute;
-  width: 300px;
+  width: 310px;
   height: auto;
 /*   max-height: 200px; */
-  top: 40px;
+  top: 50px;
   left: 0;
   padding: 0px;
   background-color: rgb(58,68,84);
@@ -679,7 +685,7 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 .info-hotspot .info-hotspot-text p,
 .modal-hotspot .info-hotspot-text p
 {
-  padding: 5px 10px 10px;
+  padding: 10px 20px;
 }
 
 
@@ -981,7 +987,7 @@ padding-bottom: 20px;
   width: 50px;
   height: 50px;
   background-color: rgb(78,88,104);
-  background-color: rgba(78,88,104,0.8);
+  /* background-color: rgba(78,88,104,0.8); */
   cursor: pointer;
 }
 
@@ -1076,7 +1082,7 @@ body.view-control-buttons .viewControlButton {
 }
 
 .desktop #welcome-modal {
-  min-height: 400px; 
+  min-height: 400px;
   width: 700px;
   max-width: 100%;
   text-align: center;
@@ -1292,8 +1298,8 @@ body.view-control-buttons .viewControlButton {
 .visited {
 
     color: green;
-    position: relative;
-    top: -20px;
+    position: absolute;
+    top: 30px;
     left: 30px;
 }
 
@@ -1336,8 +1342,9 @@ body.view-control-buttons .viewControlButton {
 
 .desktop #hotspotCounter {
   position: absolute;
-  width:200px;
-  bottom: -100px;
+  min-width:200px;
+  max-width: 600px;
+  bottom: -200px;
   left: 50%;
   margin-left: -100px;
   margin-bottom: 0px;

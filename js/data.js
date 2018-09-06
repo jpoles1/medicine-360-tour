@@ -49,6 +49,12 @@ var APP_DATA = {
           "pitch": 0.026907942254371875,
           "title": "Tisch South Elevators",
           "text": "These elevators stop on floors 1-2, 8-17."
+        },
+        {
+          "yaw": 1.5,
+          "pitch": 0.026907942254371875,
+          "title": "Family Waiting room",
+          "text": "Here family of patients can wait for their relatives and receive updates from physicians and staff."
         }
       ],
       "modalHotspots": [],
@@ -208,18 +214,18 @@ var APP_DATA = {
         {
           "yaw": -1.5334901841429556,
           "pitch": 0.03460929014540426,
-          "title": "Observation Unit",
-          "text": "Observation Unit: This is an extension of the Emergency Department.  Patients admitted to this unit are expected to stay less than 2 days and can be from multiple departments.  It is staffed by providers from the ED."
+          "title": "NP/PA Service",
+          "text": "This is also a general medical unit that is staffed by nurse practitioners and physician assistants with a medical attending.  There are no students or house staff on the medical teams on this unit."
         },
         {
           "yaw": -2.1824912210702667,
           "pitch": 0.05424644003348256,
           "title": "Hand Sanitizer",
-          "text": "Text"
+          "text": "Staff and visitors should wash their hand on entering and exiting a room every time"
         },
         {
-          "yaw": 0.4,
-          "pitch": -0.25,
+          "yaw": 0.6,
+          "pitch": -0.15,
           "title": "Make A Right",
           "text": "Make a right past the second set of elevators to go towards 17E. Enter through double doors."
         }
@@ -279,14 +285,27 @@ var APP_DATA = {
         }
       ],
       "infoHotspots": [
+        {
+          "yaw": 0.24,
+          "pitch": 0.08542605490389477,
+          "title": "Hallway Workstation",
+          "text": "There are multiple hallway workstation that are available to use on the medical units.  One can log in to Epic from these computer using your Kerberos ID or with 'tap-in/tap-out' with your ID if you have it set up.  Please be sure to stow away the computer when you are done using it to keep the walkway clear."
+
+        },
+        {
+          "yaw": -1.3,
+          "pitch": .1 ,
+          "title": "Personal Protective Equipment",
+          "text": "These boxes will house gloves, face shields and gowns to be worn if personal protective equipment (PPE) is needed to enter a patient room. If you have not donned PPE before, you should ask for instruction on how to wear it the first time.  Instructions for what needs to be worn will be on the infection control signs on the door."
+        }
 
       ],
       "modalHotspots": [
         {
-          "yaw": -1.2961610211914447,
+          "yaw": -.7,
           "pitch": -0.1371135615393868,
           "title": "Infection Control Signs",
-          "text": "There are multiple different infection control signs with differing precautions that are necessary.  The signs clearly lay out the intended barrier methods for entering the room.",
+          "text": "There are multiple different infection control signs with differing precautions that are necessary.  The signs clearly lay out the intended infection control methods and PPE needed for entering the room.",
           "imageURL":"http://via.placeholder.com/350x150?text='test'",
           "actionLink":"https://nyulangone.org" // to image carousel in new window
         }
@@ -354,22 +373,28 @@ var APP_DATA = {
           "pitch": -0.08526820239544364,
           "title": "Hand sanitizer",
           "text": "Staff should wash their hand on entering and exiting a room every time."
-        },
+        }
+      ],
+      "modalHotspots": [
         {
           "yaw": -1.4,
           "pitch": 0.3,
           "title": "MedCart",
-          "text": "Text"
-        },
+          "text": "A MedCart is a workstation on wheels that has drawers for medications and tools needed by the nurses (RNs).  Physicians and students should not use these workstations so they can be reserved for RN use.",
+          "imageURL":"img/medcart.jpg",
+          "actionLink":"https://nyulangone.org" // to image carousel in new window
+        }
+      ],
+      "roleHotspots": [
         {
           "yaw": -1.5,
           "pitch": 0.0,
           "title": "RN",
-          "text": "Text"
+          "text": "Nurses (RNs) carry out practitioners medical orders and provide frequent patient evaluations.  RNs will have between 1-6 patients that they are caring for depending on the level of care needed by the patient.  One can communicate with an RN in-person, by phone call, or by secure chat in Epic Haiku.",
+          "imageURL":"",
+          "media":"" // to image carousel in new window
         }
       ],
-      "modalHotspots": [],
-      "roleHotspots": [],
       "directions": []
     },
     {
@@ -419,11 +444,11 @@ var APP_DATA = {
       ],
       "modalHotspots": [
         {
-          "yaw": -2.691026906055429,
+          "yaw": -3.1,
           "pitch": 0.25773843126706275,
           "title": "MAARTI",
           "text": "This is our video or audio translation system at Tisch.  It can be brought in to patient rooms to communicate with non-primarily english speaking patients.  Many languages have video interpreting, and if not, it will connect to audio only.  There is an access code on the back of the MAARTI that you will need to initiate your session.",
-          "imageURL":"img/maarti.jpg",
+          "imageURL":"",
           "actionLink":"https://nyulangone.org" // to image carousel in new window
         }
       ],
