@@ -540,18 +540,31 @@
 
     // Show content when hotspot is clicked.
     wrapper.querySelector('.info-hotspot-header').addEventListener('click', function() {
+      saveSceneListStatus();
       toggle();
       hideSceneList();
+
     });
 
     // Hide content when close icon is clicked.
     modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function() {
-      toggle();
-      showSceneList();
+      if (sceneList.classList == "reopen") {
+        toggle();
+        showSceneList();
+        sceneList.classList.remove("reopen");
+      } else {
+        toggle();
+      }
+
     });
     modalDesktop.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function() {
-      toggle();
-      showSceneList();
+      if (sceneList.classList == "reopen") {
+        toggle();
+        showSceneList();
+        sceneList.classList.remove("reopen");
+      } else {
+        toggle();
+      }
     });
 
     viewer.addEventListener('sceneChange', function() {
@@ -564,6 +577,8 @@
 
     return wrapper;
   }
+
+
 
   function createRoleHotspotElement(hotspot) {
 
@@ -647,18 +662,29 @@
     };
 
     wrapper.querySelector('.info-hotspot-header').addEventListener('click', function() {
+      saveSceneListStatus();
       toggle();
       hideSceneList();
     });
 
     // Hide content when close icon is clicked.
     modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function() {
-      toggle();
-      showSceneList();
+      if (sceneList.classList == "reopen") {
+        toggle();
+        showSceneList();
+        sceneList.classList.remove("reopen");
+      } else {
+        toggle();
+      }
     });
     modalDesktop.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function() {
-      toggle();
-      showSceneList();
+      if (sceneList.classList == "reopen") {
+        toggle();
+        showSceneList();
+        sceneList.classList.remove("reopen");
+      } else {
+        toggle();
+      }
     });
     // Prevent touch and scroll events from reaching the parent element.
     // This prevents the view control logic from interfering with the hotspot.
@@ -739,10 +765,23 @@
     }
   }
 
+  function saveSceneListStatus () {
+    var sceneList = document.querySelector("#sceneList");
+
+    if (sceneList.classList == "enabled") {
+      sceneList.classList.add("reopen");
+      console.log("reopen");
+      return true;
+    } else {
+      console.log("do not reopen");
+      return false;
+    }
+  }
+
     var hotspotsTotal = 0;
     var hotspotsClicked = 0;
 
-    function hotspotVisited() {
+  function hotspotVisited() {
       var icon = '<i class="fas fa-check-circle green"></i>';
       var elements =  document.querySelectorAll(".hotspot .info-hotspot-icon-wrapper");
       hotspotsTotal = elements.length;
