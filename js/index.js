@@ -313,6 +313,25 @@
     updateMapPosition(scene);
   }
 
+  function switchSceneBack(scene, viewParameters) {
+
+    var fun = transitionFunctions['throughBlack'];
+    var ease = easing['easeInOutExpo'];
+
+    stopAutorotate();
+    scene.view.setParameters(viewParameters);
+
+    scene.scene.switchTo({
+      transitionDuration: 1000,
+      transitionUpdate: fun(ease)
+    });
+
+    startAutorotate();
+    updateSceneName(scene);
+    updateSceneList(scene);
+    updateMapPosition(scene);
+  }
+
   function updateSceneName(scene) {
     sceneNameElement.innerHTML = sanitize(scene.data.name);
   }
@@ -427,7 +446,18 @@
 
     // Add click event handler.
     wrapper.addEventListener('click', function() {
-      switchScene(findSceneById(hotspot.target));
+
+      if (hotspot.back) {
+
+        switchSceneBack( findSceneById(hotspot.target), hotspot.back );
+
+      } else {
+
+        switchScene( findSceneById(hotspot.target) );
+
+      }
+
+      // change orientation if a back link
     });
 
     // Prevent touch and scroll events from reaching the parent element.
