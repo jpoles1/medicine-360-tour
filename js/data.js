@@ -504,10 +504,51 @@ var APP_DATA = {
     }
   ],
   "name": "Medicine Orientation Virtual Tour",
+  "welcome": {
+    "title":"Medicine Virtual Tour",
+    "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie tellus nec malesuada volutpat. Ut pretium neque quis justo condimentum, in tristique velit facilisis. Aenean venenatis mattis porta. Vestibulum eget.",
+    "objectives": [
+      {
+        "id": "01",
+        "text": "objective 1"
+      },
+      {
+        "id": "02",
+        "text": "objective 2"
+      },
+      {
+        "id": "03",
+        "text": "objective 3"
+      }
+    ],
+    "credits" : [
+      {
+        "name":"Aron Mednick",
+        "title" :"MD, Director of Medicine"
+      },
+      {
+        "name":"Greg Dorsainville",
+        "title" :"Lead Developer"
+      },
+      {
+        "name":"Jordan Poles",
+        "title" :"Developer"
+      },
+    ],
+    "action": ""
+  },
   "settings": {
     "mouseViewMode": "drag",
     "autorotateEnabled": false,
     "fullscreenButton": true,
-    "viewControlButtons": true
+    "viewControlButtons": true,
+    "pretest": {
+      "enable": true,
+      "url":"https://nyumc.qualtrics.com/"
+    },
+    "posttest": {
+      "enable": false,
+      "url":""
+    }
   }
 };

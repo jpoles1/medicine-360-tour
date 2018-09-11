@@ -32,6 +32,8 @@
   var sceneListToggleElement = document.querySelector('#sceneListToggle');
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
   var fullscreenToggleElement = document.querySelector('#fullscreenToggle');
+  var objectiveToggleElement = document.querySelector('#objectiveToggle');
+
 
   var mat4 = Marzipano.dependencies.glMatrix.mat4;
   var quat = Marzipano.dependencies.glMatrix.quat;
@@ -212,7 +214,68 @@
     return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
   }
 
+  //dom elements for welcome modal
 
+  var welcomeTitleElement = document.querySelector("#welcomeTitle");
+  var welcomeDescElement  = document.querySelector("#welcomeDescription");
+  var objectivesElement = document.querySelector("#objectives");
+  var creditsElement = document.querySelector("#credits");
+  var welcomeModal = document.querySelector(".welcome");
+
+  function buildWelcomeModal() {
+    var title = data.welcome.title;
+    var description = data.welcome.description;
+    var objectives = data.welcome.objectives;
+    var credits = data.welcome.credits;
+
+    welcomeTitleElement.innerHTML = title;
+    welcomeDescElement.innerHTML = description;
+
+    objectives.forEach(function(objective){
+      var objEl = document.createElement("li");
+      objEl.innerHTML = objective.text;
+      objectivesElement.append(objEl);
+
+    });
+     credits.forEach(function(credit) {
+       var creditEl = document.createElement("li");
+       creditEl.innerHTML = credit.name + ", " + credit.title;
+       creditsElement.append(creditEl);
+     });
+
+     var hide = function () {
+
+       welcomeModal.classList.remove('visible');
+
+     };
+     // Hide content when close icon is clicked.
+     document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', hide);
+
+     saveSceneListStatus();
+
+     objectiveToggleElement.addEventListener('click', function() {
+       var welcomeModalElement = document.querySelector(".welcome");
+       welcomeModalElement.classList.toggle('visible');
+     });
+
+     var welcomeButton = document.querySelector("#welcome-modal .start-btn button");
+     var pretest = data.settings.pretest.enable;
+
+     welcomeButton.addEventListener('click', hide);
+
+     if (pretest) {
+       var pretestURL = data.settings.pretest.url;
+       var welcomeButtonForm = document.querySelector(".start-btn");
+
+       welcomeButtonForm.action = pretestURL;
+       welcomeButtonForm.method = "get";
+       welcomeButtonForm.target = "_blank";
+       welcomeButton.innerHTML = "Begin Pretest"
+
+     } else {
+       welcomeButton.innerHTML = "Start Tour";
+     }
+  }
 
   function switchScene(scene) {
 
@@ -258,7 +321,6 @@
   }
 
   function updateMapPosition(scene) {
-
 
     var mapEl = document.querySelector("#point");
     var sceneId = scene.data.id.split("-");
@@ -540,7 +602,7 @@
 
     // Show content when hotspot is clicked.
     wrapper.querySelector('.info-hotspot-header').addEventListener('click', function() {
-      saveSceneListStatus();
+
       toggle();
       hideSceneList();
 
@@ -577,8 +639,6 @@
 
     return wrapper;
   }
-
-
 
   function createRoleHotspotElement(hotspot) {
 
@@ -826,6 +886,7 @@
 
   // Display the initial scene.
   document.addEventListener("DOMContentLoaded", function(event) {
+    buildWelcomeModal();
     switchScene(scenes[0]);
     hotspotVisited();
   })

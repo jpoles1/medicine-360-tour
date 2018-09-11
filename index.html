@@ -62,9 +62,11 @@
     <div id="hotspotCounter">
       Visited <span>0/0</span> information markers
     </div>
+
     <div id="titleBar">
       <h1 class="sceneName"></h1>
     </div>
+    <a href="#" class="" id="objectiveToggle"><i class="fas fa-question fa-lg"></i></a>
     <a href="#" id="autorotateToggle">
       <img class="icon off" src="img/play.png">
       <img class="icon on" src="img/pause.png">
@@ -107,31 +109,19 @@
           <img src="img/close.png" class="info-hotspot-close-icon">
         </div>
       </div>
+
       <div class="info-hotspot-text">
-        <h1>Welcome Medicine Virtual Tour.</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie tellus nec malesuada volutpat. Ut pretium neque quis justo condimentum, in tristique velit facilisis. Aenean venenatis mattis porta. Vestibulum eget.</p>
-        <div class="start-btn">
-          <button>START</button>
-        </div>
+        <h1 id="welcomeTitle"></h1>
+        <p id="welcomeDescription"></p>
+        <ul id="objectives"></ul>
+        <ul id="credits"></ul>
+        <form class="start-btn" >
+          <button></button>
+        </form>
       </div>
     </div>
   </div>
 </div>
-<script>
-(function () {
-        var welcomeModal = document.querySelector(".welcome");
-        var hide = function () {
-
-          welcomeModal.classList.remove('visible');
-
-        };
-
-        // Hide content when close icon is clicked.
-        document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', hide);
-        document.body.addEventListener('click', hide);
-
-      })();
-</script>
 <script src="js/es5-shim.js"></script>
 <script src="js/screenfull.min.js" ></script>
 <script src="js/eventShim.js"></script>

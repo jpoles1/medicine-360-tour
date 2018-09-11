@@ -26,6 +26,11 @@ html, body {
   font-size: 16px;
   background-color: #000;
   color: #fff;
+
+}
+
+.mobile {
+  touch-action: manipulation;
 }
 
 a, a:hover, a:active, a:visited {
@@ -178,7 +183,7 @@ body.fullscreen-enabled #fullscreenToggle {
   display: block;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 40px;
   width: 40px;
   height: 40px;
   padding: 5px;
@@ -189,6 +194,7 @@ body.fullscreen-enabled #fullscreenToggle {
 .mobile #autorotateToggle {
   width: 50px;
   height: 50px;
+  right: 0;
 }
 
 /* If there is a fullscreen button, autorotate must placed a bit to the left */
@@ -1000,12 +1006,11 @@ padding-bottom: 20px;
 .info-hotspot-modal .info-hotspot-text {
   position: absolute;
   top: 110px;
-  bottom: 10px;
+  text-align: left;
   left: 10px;
   right: 10px;
-  padding: 10px;
+  padding: 20px;
   background-color: rgb(58,68,84);
-  background-color: rgba(58,68,84,0.8);
   overflow-y: auto;
   opacity: 0;
   -webkit-transition: opacity 0.3s ease-in-out;
@@ -1017,11 +1022,42 @@ padding-bottom: 20px;
   user-select: text;
 }
 
+.info-hotspot-modal .info-hotspot-text h1 {
+  text-align: center;
+
+}
+
+.info-hotspot-modal .info-hotspot-text p {
+  padding: 10px 0;
+
+}
+
+#objectives, #credits, #welcomeDescription {
+  padding: 10px 0;
+}
+
+#welcome-modal ul {
+  padding: 20px 0 0 0;
+  list-style-position: inside;
+}
+
+#objectives li {
+  list-style-type: circle;
+  padding: 0 0 0 10px;
+}
+
+#credits li {
+  padding: 0 0 0px 0;
+}
+
+
 .info-hotspot-modal.visible .info-hotspot-text {
   opacity: 1;
   -webkit-transition: opacity 0.3s ease-in-out 0.4s;
   transition: opacity 0.3s ease-in-out 0.4s;
 }
+
+
 
 /* View control buttons */
 
@@ -1081,15 +1117,23 @@ body.view-control-buttons .viewControlButton {
   margin: auto;
 }
 
-.desktop #welcome-modal {
-  min-height: 400px;
+ #welcome-modal {
+
+  margin: auto;
+  position: absolute;;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 700px;
   max-width: 100%;
   text-align: center;
-  position: relative;
-  margin-top: 10%;
-  margin-left: auto;
-  margin-right: auto;
+
+}
+
+
+#welcome-modal.visible {
+  visibility: visible;
 }
 
 .welcome .info-hotspot-header {
@@ -1099,7 +1143,7 @@ body.view-control-buttons .viewControlButton {
 #welcome-modal H1 {
   font-size: 2rem;
   padding-bottom: 20px;
-  padding-top:10%;
+
   line-height: 100%;
 }
 
@@ -1390,6 +1434,37 @@ body.view-control-buttons .viewControlButton {
 .desktop #hotspotCounter.enabled {
   margin-bottom: 200px;
 }
+
+.desktop #objectiveToggle {
+
+  position: absolute;
+  text-align: center;
+  top: 0;
+  right: 0px;
+  padding: 13px;
+  background-color: rgb(103,115,131);
+  background-color: rgba(103,115,131,0.8);
+  width: 40px;
+  height: 40px;
+
+
+}
+
+.mobile #objectiveToggle {
+
+  position: absolute;
+  text-align: center;
+  bottom: 0;
+  right: 0px;
+  padding: 20px;
+  background-color: rgb(103,115,131);
+  background-color: rgba(103,115,131,0.8);
+  width: 50px;
+  height: 50px;
+
+
+}
+
 .button, button, input[type="submit"], input[type="reset"], input[type="button"] {
 
   display: inline-block;
@@ -1407,6 +1482,7 @@ body.view-control-buttons .viewControlButton {
   border-radius: 4px;
   cursor: pointer;
   box-sizing: border-box;
+  background-color: #eee;
 }
 
 .start-btn button {
