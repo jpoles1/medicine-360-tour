@@ -510,21 +510,21 @@ var APP_DATA = {
     "objectives": [
       {
         "id": "01",
-        "text": "objective 1"
+        "text": "Complete the pretest."
       },
       {
         "id": "02",
-        "text": "objective 2"
+        "text": "Find and read all information markers."
       },
       {
         "id": "03",
-        "text": "objective 3"
+        "text": "Understand the roles of different team members."
       }
     ],
     "credits" : [
       {
         "name":"Aron Mednick",
-        "title" :"MD, Director of Medicine"
+        "title" :"MD, Assistant Director, Clerkship in Medicine"
       },
       {
         "name":"Greg Dorsainville",
@@ -544,8 +544,8 @@ var APP_DATA = {
   "settings": {
     "mouseViewMode": "drag",
     "autorotateEnabled": false,
-    "fullscreenButton": true,
-    "viewControlButtons": true,
+    "fullscreenButton": false,
+    "viewControlButtons": false,
     "pretest": {
       "enable": true,
       "url":"https://nyumc.qualtrics.com/"
