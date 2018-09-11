@@ -534,6 +534,10 @@ var APP_DATA = {
         "name":"Jordan Poles",
         "title" :"Developer"
       },
+      {
+        "name":"Jillian Halpern",
+        "title" :"Instructional Designer"
+      }
     ],
     "action": ""
   },
