@@ -142,7 +142,7 @@
 
   // Set up autorotate, if enabled.
   var autorotate = Marzipano.autorotate({
-    yawSpeed: 0.03,
+    yawSpeed: 0.04,
     targetPitch: 0,
     targetFov: Math.PI/2
   });
@@ -249,7 +249,12 @@
 
      };
      // Hide content when close icon is clicked.
-     document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', hide);
+     document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', function() {
+       hide();
+       autorotateToggleElement.classList.add('enabled');
+       startAutorotate();
+
+     });
 
      saveSceneListStatus();
 
@@ -261,7 +266,12 @@
      var welcomeButton = document.querySelector("#welcome-modal .start-btn button");
      var pretest = data.settings.pretest.enable;
 
-     welcomeButton.addEventListener('click', hide);
+     welcomeButton.addEventListener('click', function() {
+       hide();
+
+       autorotateToggleElement.classList.add('enabled');
+       startAutorotate();
+     });
 
      if (pretest) {
        var pretestURL = data.settings.pretest.url;
@@ -303,8 +313,6 @@
     updateMapPosition(scene);
   }
 
-
-
   function updateSceneName(scene) {
     sceneNameElement.innerHTML = sanitize(scene.data.name);
   }
@@ -331,7 +339,7 @@
 
   }
 
-  function updateMapOritation(rotation) {
+  function updateMapOrientation(rotation) {
     if(!rotation) rotation = 0;
     //Add rotation transform to map indicator
     var mapEl = document.querySelector("#point svg");
@@ -341,7 +349,7 @@
   var positionUpdateTimeout;
   viewer.addEventListener('viewChange', function(e) {
     //Take incoming yaw in radians and convert to degrees to set map orientation
-    updateMapOritation(180*viewer.view().yaw()/Math.PI)
+    updateMapOrientation(180*viewer.view().yaw()/Math.PI)
   });
 
   function showSceneList() {
@@ -600,12 +608,11 @@
       document.body.classList.toggle('dialogIsOpen');
     };
 
-    // Show content when hotspot is clicked.
+    // Show content when hotspot is clicked. save status of info panels
     wrapper.querySelector('.info-hotspot-header').addEventListener('click', function() {
-
+      saveSceneListStatus();
       toggle();
       hideSceneList();
-
     });
 
     // Hide content when close icon is clicked.
