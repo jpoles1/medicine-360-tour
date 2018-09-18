@@ -51,6 +51,12 @@ a, a:hover, a:active, a:visited {
   -o-transition: .5s -o-filter ease;
 }
 
+#hint {
+  font-family: helvetica, arial, sans-serif;
+  text-align: center;
+  padding: 20px;
+}
+
 #page-wrap {
 
   transition: .5s filter ease; /* prefix me */

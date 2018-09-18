@@ -577,6 +577,10 @@ var APP_DATA = {
       {
         "name":"Jillian Halpern",
         "title" :"Instructional Designer"
+      },
+      {
+        "name":"Greta Elysee",
+        "title" :"Production Assistant"
       }
     ],
     "action": ""
@@ -586,6 +590,10 @@ var APP_DATA = {
     "autorotateEnabled": false,
     "fullscreenButton": false,
     "viewControlButtons": false,
+    "introVideo" : {
+      "enable": true,
+      "url": 'video/elevator.mp4'
+    },
     "pretest": {
       "enable": true,
       "url":"https://nyumc.qualtrics.com/"
