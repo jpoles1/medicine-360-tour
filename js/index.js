@@ -136,6 +136,7 @@
 
       introVideo.play();
 
+
       waitForReadyState(introVideo, introVideo.HAVE_METADATA, 100, function() {
         waitForReadyState(introVideo, introVideo.HAVE_ENOUGH_DATA, 100, function() {
           videoAsset.setVideo(introVideo);
@@ -143,8 +144,10 @@
       });
 
       introVideo.onended = function() {
+        hideHint();
         videoViewer.destroy();
         panoElement.innerHTML = "";
+
         createTour();
       }
     }
@@ -166,6 +169,8 @@
   // ------------------ start tour viewer
   function createTour () {
       // Viewer options.
+
+
       var viewerOpts = {
         controls: {
           mouseViewMode: data.settings.mouseViewMode
@@ -250,12 +255,14 @@
     var creditsElement = document.querySelector("#credits");
     var welcomeModal = document.querySelector(".welcome");
 
+
     buildWelcomeModal();
 
     // load first scene
     //console.log("switching to first scene of tour.");
     switchScene(scenes[0]);
     hotspotVisited();
+
 
     // Set up autorotate, if enabled.
     var autorotate = Marzipano.autorotate({
@@ -1066,11 +1073,15 @@
       });
     }
 
+  function hideHint() {
+    document.querySelector("#hint").classList.add("hide");
+  }
   // Display the initial scene.
   document.addEventListener("DOMContentLoaded", function(event) {
     if (data.settings.introVideo.enable){
       createVideo();
     } else {
+      hideHint();
       createTour();
     }
   })

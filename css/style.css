@@ -62,7 +62,17 @@ a, a:hover, a:active, a:visited {
   font-family: helvetica, arial, sans-serif;
   text-align: center;
   padding: 20px;
-  margin-top: 50%;
+  margin-top: 30%;
+  background-color: #555;
+  width: 400px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#hint .fas {
+  margin-top:50px;
+  display: block;
 }
 
 #page-wrap {
