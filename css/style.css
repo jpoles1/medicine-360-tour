@@ -50,6 +50,12 @@ a, a:hover, a:active, a:visited {
   -moz-transition: .5s -moz-filter ease;
   -ms-transition: .5s -ms-filter ease;
   -o-transition: .5s -o-filter ease;
+  pointer-events: none;
+}
+
+.dialogIsOpen .info-hotspot, .dialogIsOpen .modal-hotspot, .dialogIsOpen .link-hotspot{
+  pointer-events: none;
+
 }
 
 #hint {
