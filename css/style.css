@@ -62,12 +62,16 @@ a, a:hover, a:active, a:visited {
   font-family: helvetica, arial, sans-serif;
   text-align: center;
   padding: 20px;
-  margin-top: 30%;
+
   background-color: #555;
   width: 400px;
   height: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  position: absolute;
+     margin: auto;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
 }
 
 #hint .fas {
@@ -1577,5 +1581,5 @@ body.view-control-buttons .viewControlButton {
 }
 
 .hide {
-  visibility: hidden;
+  display: none;
 }
