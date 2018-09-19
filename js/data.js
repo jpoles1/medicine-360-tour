@@ -145,7 +145,7 @@ var APP_DATA = {
         {
           "yaw": 2.7755751013511416,
           "pitch": 0.07485721308561644,
-          "rotation": 0,
+          "rotation": 1,
           "target": "0-17th_floor_lobby_center",
           "back" : {
             "yaw": 3,
@@ -236,11 +236,11 @@ var APP_DATA = {
           "yaw": -2.1824912210702667,
           "pitch": 0.05424644003348256,
           "title": "Hand Sanitizer",
-          "text": "Staff and visitors should wash their hand on entering and exiting a room every time"
+          "text": "Staff and visitors should wash their hand on entering and exiting a room every time."
         },
         {
           "yaw": 0.6,
-          "pitch": -0.15,
+          "pitch": .25,
           "title": "Make A Right",
           "text": "Make a right past the second set of elevators to go towards 17E. Enter through double doors."
         }
@@ -289,7 +289,7 @@ var APP_DATA = {
         {
           "yaw": 3.0642114184939757,
           "pitch": 0.014731028448244032,
-          "rotation": 0,
+          "rotation": -1,
           "target": "5-east_hallway"
         },
         {
@@ -326,7 +326,38 @@ var APP_DATA = {
           "pitch": -0.1371135615393868,
           "title": "Infection Control Signs",
           "text": "There are multiple different infection control signs with differing precautions that are necessary.  The signs clearly lay out the intended infection control methods and PPE needed for entering the room.",
-          "imageURL":"http://via.placeholder.com/350x150?text='test'",
+          "images" : [
+            {
+               "imageURL" : "img/hotspot_images/label_1.jpg",
+               "alt" : "placeholder image",
+               "text" : "This describes this image."
+            },
+            {
+               "imageURL" : "img/hotspot_images/label_2.jpg",
+               "alt" : "placeholder image",
+               "text" : "This describes this image."
+            },
+            {
+               "imageURL" : "img/hotspot_images/label_3.jpg",
+               "alt" : "placeholder image",
+               "text" : "This describes this image."
+            },
+            {
+               "imageURL" : "img/hotspot_images/label_4.jpg",
+               "alt" : "placeholder image",
+               "text" : "This describes this image."
+            },
+            {
+               "imageURL" : "img/hotspot_images/label_5.jpg",
+               "alt" : "placeholder image",
+               "text" : "This describes this image."
+            },
+            {
+               "imageURL" : "img/hotspot_images/label_6.jpg",
+               "alt" : "placeholder image",
+               "text" : "This describes this image."
+            }
+          ],
           "actionLink":"https://nyulangone.org" // to image carousel in new window
         }
       ],
@@ -368,7 +399,7 @@ var APP_DATA = {
           "rotation": 0,
           "target": "4-east_entrance",
           "back" : {
-            "yaw": -1.5,
+            "yaw": 0,
             "pitch": 0,
             "fov": 1.8073895612144246
           }
@@ -406,7 +437,14 @@ var APP_DATA = {
           "pitch": 0.3,
           "title": "MedCart",
           "text": "A MedCart is a workstation on wheels that has drawers for medications and tools needed by the nurses (RNs).  Physicians and students should not use these workstations so they can be reserved for RN use.",
-          "imageURL":"img/medcart.jpg",
+          "images" : [
+            {
+              "imageURL":"img/medcart.jpg",
+              "imageAlt" : "medcart",
+              "text" : "medcart"
+            }
+          ],
+
           "actionLink":"https://nyulangone.org" // to image carousel in new window
         }
       ],
@@ -478,7 +516,14 @@ var APP_DATA = {
           "pitch": 0.25773843126706275,
           "title": "MAARTI",
           "text": "This is our video or audio translation system at Tisch.  It can be brought in to patient rooms to communicate with non-primarily english speaking patients.  Many languages have video interpreting, and if not, it will connect to audio only.  There is an access code on the back of the MAARTI that you will need to initiate your session.",
-          "imageURL":"",
+          "images" : [
+            {
+              "imageURL":"",
+              "imageAlt":"",
+              "text" : ""
+            }
+          ],
+
           "actionLink":"https://nyulangone.org" // to image carousel in new window
         }
       ],
@@ -546,7 +591,7 @@ var APP_DATA = {
   "name": "Medicine Orientation Virtual Tour",
   "welcome": {
     "title":"Medicine Virtual Tour",
-    "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin molestie tellus nec malesuada volutpat. Ut pretium neque quis justo condimentum, in tristique velit facilisis. Aenean venenatis mattis porta. Vestibulum eget.",
+    "description" : "Welcome to the Virtual Tour of the Medicine Floor. This will provide you a sense of the space, materials and people you will meet when you arrive. Use your mouse or finger to move around the 360° images.",
     "objectives": [
       {
         "id": "01",

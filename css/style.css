@@ -26,6 +26,7 @@ html, body {
   font-size: 16px;
   background-color: #000;
   color: #fff;
+  position: fixed;
 
 }
 
@@ -55,6 +56,7 @@ a, a:hover, a:active, a:visited {
   font-family: helvetica, arial, sans-serif;
   text-align: center;
   padding: 20px;
+  margin-top: 50%;
 }
 
 #page-wrap {
@@ -491,8 +493,8 @@ body.single-scene #sceneList, body.single-scene #sceneListToggle {
 }
 
 .info-hotspot .info-hotspot-header, .modal-hotspot .info-hotspot-header {
-  width: 50px;
-  height: 50px;
+  width: 51px;
+  height: 51px;
   border-radius: 25px;
   background-color: rgb(222, 91, 50);
   cursor: pointer;
@@ -888,7 +890,8 @@ padding-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 20px;
-    width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 .modal-hotspot-modal.visible .info-hotspot-text {
@@ -1536,4 +1539,27 @@ body.view-control-buttons .viewControlButton {
 .info-hotspot-image{
   margin-top: 15px;
   max-width: 100%;
+}
+
+.slider {
+  overflow: hidden;
+}
+
+.slider figure {
+  position:relative;
+  width: 100%;
+  margin: 0;
+  left: 0;
+}
+
+.slider figure img {
+
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 10px;
+}
+
+.hide {
+  visibility: hidden;
 }

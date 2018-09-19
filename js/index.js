@@ -71,90 +71,89 @@
     document.body.classList.add('tooltip-fallback');
   }
 
-
-
   // ------------------ start video
-function createVideo() {
-  var introVideo;
-  // Video requires WebGL support.
-  var videoViewerOpts = {
+  function createVideo() {
+    var introVideo;
+    // Video requires WebGL support.
+    var videoViewerOpts = {
     stageType: 'webgl',
     controls: {
       mouseViewMode: data.settings.mouseViewMode
-    }
-  };
+      }
+    };
 
-  var videoViewer = new Marzipano.Viewer(panoElement, videoViewerOpts);
+    var videoViewer = new Marzipano.Viewer(panoElement, videoViewerOpts);
 
-  // Create asset and source.
-  var videoAsset = new VideoAsset();
-  var videoSource = new Marzipano.SingleAssetSource(videoAsset);
+    // Create asset and source.
+    var videoAsset = new VideoAsset();
+    var videoSource = new Marzipano.SingleAssetSource(videoAsset);
 
-  // Create geometry.
-  // This is a trivial equirectangular geometry with a single level.
-  // The level size need not match the actual video dimensions because it is
-  // only used to determine the most appropriate level to render, and no such
-  // choice has to be made in this case.
-  var videoGeometry = new Marzipano.EquirectGeometry([ { width: 1 } ]);
+    // Create geometry.
+    // This is a trivial equirectangular geometry with a single level.
+    // The level size need not match the actual video dimensions because it is
+    // only used to determine the most appropriate level to render, and no such
+    // choice has to be made in this case.
+    var videoGeometry = new Marzipano.EquirectGeometry([ { width: 1 } ]);
 
-  // Create video view.
-  // We display the video at a fixed vertical fov.
-  var videoLimiter = Marzipano.RectilinearView.limit.vfov(90*Math.PI/180, 90*Math.PI/180);
-  var videoView = new Marzipano.RectilinearView({ fov: Math.PI/2 }, videoLimiter);
+    // Create video view.
+    // We display the video at a fixed vertical fov.
+    var videoLimiter = Marzipano.RectilinearView.limit.vfov(90*Math.PI/180, 90*Math.PI/180);
+    var videoView = new Marzipano.RectilinearView({ fov: Math.PI/2 }, videoLimiter);
 
-  // Create video scene.
-  var videoScene = videoViewer.createScene({
-    source: videoSource,
-    geometry: videoGeometry,
-    view: videoView
-  });
-
-  // Start playback on click.
-  // Playback cannot start automatically because most browsers require the play()
-  // method on the video element to be called in the context of a user action.
-  document.body.addEventListener('click', tryStart);
-  document.body.addEventListener('touchstart', tryStart);
-
-  // Whether playback has started.
-  var started = false;
-
-  // Try to start playback.
-  function tryStart() {
-    if (started) {
-      return;
-    }
-    started = true;
-
-    introVideo = document.createElement('video');
-    introVideo.src = data.settings.introVideo.url;
-    introVideo.crossOrigin = 'anonymous';
-
-    introVideo.autoplay = true;
-    introVideo.loop = false;
-
-    // Prevent the video from going full screen on iOS.
-    introVideo.playsInline = true;
-    introVideo.webkitPlaysInline = true;
-
-    introVideo.play();
-
-    waitForReadyState(introVideo, introVideo.HAVE_METADATA, 100, function() {
-      waitForReadyState(introVideo, introVideo.HAVE_ENOUGH_DATA, 100, function() {
-        videoAsset.setVideo(introVideo);
-      });
+    // Create video scene.
+    var videoScene = videoViewer.createScene({
+      source: videoSource,
+      geometry: videoGeometry,
+      view: videoView
     });
 
-    introVideo.onended = function() {
-      videoViewer.destroy();
-      panoElement.innerHTML = "";
-      createTour();
+    // Start playback on click.
+    // Playback cannot start automatically because most browsers require the play()
+    // method on the video element to be called in the context of a user action.
+    document.body.addEventListener('click', tryStart);
+    document.body.addEventListener('touchstart', tryStart);
+
+    // Whether playback has started.
+    var started = false;
+
+    // Try to start playback.
+    function tryStart() {
+      if (started) {
+        return;
+      }
+      started = true;
+
+      introVideo = document.createElement('video');
+      introVideo.src = data.settings.introVideo.url;
+      introVideo.crossOrigin = 'anonymous';
+
+      introVideo.autoplay = true;
+      introVideo.loop = false;
+
+      // Prevent the video from going full screen on iOS.
+      introVideo.playsInline = true;
+      introVideo.webkitPlaysInline = true;
+
+      introVideo.play();
+
+      waitForReadyState(introVideo, introVideo.HAVE_METADATA, 100, function() {
+        waitForReadyState(introVideo, introVideo.HAVE_ENOUGH_DATA, 100, function() {
+          videoAsset.setVideo(introVideo);
+        });
+      });
+
+      introVideo.onended = function() {
+        videoViewer.destroy();
+        panoElement.innerHTML = "";
+        createTour();
+      }
     }
-  }
-  videoScene.switchTo();
+
+    videoScene.switchTo();
     // Wait for an element to reach the given readyState by polling.
     // The HTML5 video element exposes a `readystatechange` event that could be
     // listened for instead, but it seems to be unreliable on some browsers.
-  function waitForReadyState(element, readyState, interval, done) {
+    function waitForReadyState(element, readyState, interval, done) {
     var timer = setInterval(function() {
       if (element.readyState >= readyState) {
         clearInterval(timer);
@@ -163,8 +162,8 @@ function createVideo() {
     }, interval);
   }
   // ------------------ end video viewer
-}
-// ------------------ start tour viewer
+  }
+  // ------------------ start tour viewer
   function createTour () {
       // Viewer options.
       var viewerOpts = {
@@ -254,7 +253,7 @@ function createVideo() {
     buildWelcomeModal();
 
     // load first scene
-    console.log("switching to first scene of tour.");
+    //console.log("switching to first scene of tour.");
     switchScene(scenes[0]);
     hotspotVisited();
 
@@ -315,6 +314,8 @@ function createVideo() {
     controls.registerMethod('inElement',    new Marzipano.ElementPressControlMethod(viewInElement,  'zoom', -velocity, friction), true);
     controls.registerMethod('outElement',   new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom',  velocity, friction), true);
 
+
+
     function sanitize(s) {
       return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
     }
@@ -349,12 +350,10 @@ function createVideo() {
        // Hide content when close icon is clicked.
        document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', function() {
          hide();
-         autorotateToggleElement.classList.add('enabled');
-         startAutorotate();
+         //autorotateToggleElement.classList.add('enabled');
+         //startAutorotate();
 
        });
-
-       saveSceneListStatus();
 
        objectiveToggleElement.addEventListener('click', function() {
          var welcomeModalElement = document.querySelector(".welcome");
@@ -367,8 +366,8 @@ function createVideo() {
        welcomeButton.addEventListener('click', function() {
          hide();
 
-         autorotateToggleElement.classList.add('enabled');
-         startAutorotate();
+         // autorotateToggleElement.classList.add('enabled');
+         // startAutorotate();
        });
 
        if (pretest) {
@@ -384,6 +383,8 @@ function createVideo() {
          welcomeButton.innerHTML = "Start Tour";
        }
        welcomeModal.classList.add("visible");
+
+       saveSceneListStatus();
     }
 
     function switchScene(scene) {
@@ -700,10 +701,44 @@ function createVideo() {
       header.appendChild(titleWrapper);
       header.appendChild(closeWrapper);
 
-      //Create image element
-      var image = document.createElement('img');
-      image.src = hotspot.imageURL;
-      image.classList.add('info-hotspot-image');
+      //Create image element or slideshow
+      var image = document.createElement('div');
+      var modalImages = hotspot.images;
+
+      if (modalImages.length>1){
+
+        image.classList.add('slider')
+        var figureEl = document.createElement('figure');
+
+        //add each image to parent div
+        modalImages.forEach ( function (image) {
+          var imageSrc = image.imageURL;
+          var imageAlt = image.alt;
+          var imageText = image.text;
+          var imageTextEl = document.createElement('p');
+          var imageNum = modalImages.indexOf(image) + 1;
+          var totalImages = modalImages.length;
+          if (imageText) {
+            imageTextEl.innerHTML = image.text + " (" + imageNum + " of " + totalImages + ") " ;
+          } else {
+            imageTextEl.innerHTML = " (" + imageNum + " of " + totalImages + ") " ;
+          }
+          var imageEl = document.createElement('img');
+          imageEl.src = imageSrc;
+          imageEl.alt= imageAlt;
+          figureEl.appendChild(imageTextEl);
+          figureEl.appendChild(imageEl);
+
+        });
+        image.appendChild(figureEl);
+
+      } else {
+        var imageEl = document.createElement('img');
+        imageEl.src = modalImages[0].imageURL;
+        imageEl.alt = modalImages[0].alt;
+        imageEl.classList.add('info-hotspot-image');
+        image.appendChild(imageEl);
+      }
 
 
       // Create text element.
@@ -715,7 +750,6 @@ function createVideo() {
       // Place header and text into wrapper element.
       wrapper.appendChild(header);
       wrapper.appendChild(text);
-      //text.insertBefore(image, text.firstChild);
       text.appendChild(image);
 
       // Create a modal for the hotspot content to appear on mobile mode.
@@ -949,6 +983,14 @@ function createVideo() {
       return wrapper;
     }
 
+    function closeOtherHotspots (hotspot) {
+
+    }
+
+    function closeAllHotspots (){
+
+    }
+
     function findSceneById(id) {
       for (var i = 0; i < scenes.length; i++) {
         if (scenes[i].data.id === id) {
@@ -979,7 +1021,7 @@ function createVideo() {
     }
 
   }
-//------------------end tour viewer code
+  //------------------- end tour viewer
 
 
   function saveSceneListStatus () {
@@ -999,6 +1041,8 @@ function createVideo() {
   var hotspotsClicked = 0;
 
   function hotspotVisited() {
+    //make hotspot counter visible
+    counterElement.classList.remove("hide");
       var icon = '<i class="fas fa-check-circle green"></i>';
       var elements =  document.querySelectorAll(".hotspot .info-hotspot-icon-wrapper");
       hotspotsTotal = elements.length;
