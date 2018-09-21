@@ -514,12 +514,12 @@ var APP_DATA = {
         {
           "yaw": -3.1,
           "pitch": 0.25773843126706275,
-          "title": "MAARTI",
+          "title": "MARTTI",
           "text": "This is our video or audio translation system at Tisch.  It can be brought in to patient rooms to communicate with non-primarily english speaking patients.  Many languages have video interpreting, and if not, it will connect to audio only.  There is an access code on the back of the MAARTI that you will need to initiate your session.",
           "images" : [
             {
-              "imageURL":"",
-              "imageAlt":"",
+              "imageURL":"img/martti.png",
+              "imageAlt":"martti interpreter system",
               "text" : ""
             }
           ],
@@ -644,8 +644,8 @@ var APP_DATA = {
       "url":"https://nyumc.qualtrics.com/"
     },
     "posttest": {
-      "enable": false,
-      "url":""
+      "enable": true,
+      "url":"https://nyumc.qualtrics.com/"
     }
   }
 };

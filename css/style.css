@@ -936,7 +936,7 @@ padding-bottom: 20px;
   position: absolute;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow-y: scroll;
   z-index: 11000 !important;
   background-color: rgba(0,0,0,.5);
   line-height: 1.2em;
@@ -1157,6 +1157,7 @@ body.view-control-buttons .viewControlButton {
   width: 700px;
   max-width: 100%;
   text-align: center;
+  overflow-y: scroll;
 
 }
 
@@ -1444,11 +1445,11 @@ body.view-control-buttons .viewControlButton {
 .mobile #hotspotCounter {
 
   position: absolute;
-  max-width: 40%;
-  bottom: 0;
+  max-width: 45%;
+  bottom: 4rem;
   right: 0;
   max-height: 20%;
-  margin-bottom: -20%;
+  margin-bottom: -200px;
   padding: 10px;
   -webkit-transition: margin-bottom 0.5s ease-in-out;
   transition: margin-bottom 0.1s  linear;
@@ -1460,8 +1461,26 @@ body.view-control-buttons .viewControlButton {
   transition: margin-bottom 0.3s 0.4s ease-in-out;
 }
 
+#hotspotCounter button {
+  padding:0 10px;
+  color: white;
+  background-color: #4CAF50;
+  border: none;
+}
+
+.mobile #hotspotCounter button {
+  padding:8px;
+  white-space: normal;
+  line-height: 20px;
+  height: auto;
+}
+
 .desktop #hotspotCounter.enabled {
   margin-bottom: 200px;
+}
+
+form.post-test {
+  padding-top:10px;
 }
 
 .desktop #objectiveToggle {

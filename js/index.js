@@ -259,7 +259,7 @@
     buildWelcomeModal();
 
     // load first scene
-    //console.log("switching to first scene of tour.");
+
     switchScene(scenes[0]);
     hotspotVisited();
 
@@ -321,8 +321,6 @@
     controls.registerMethod('inElement',    new Marzipano.ElementPressControlMethod(viewInElement,  'zoom', -velocity, friction), true);
     controls.registerMethod('outElement',   new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom',  velocity, friction), true);
 
-
-
     function sanitize(s) {
       return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
     }
@@ -378,17 +376,13 @@
        });
 
        if (pretest) {
-         var pretestURL = data.settings.pretest.url;
-         var welcomeButtonForm = document.querySelector(".start-btn");
 
-         welcomeButtonForm.action = pretestURL;
-         welcomeButtonForm.method = "get";
-         welcomeButtonForm.target = "_blank";
-         welcomeButton.innerHTML = "Begin Pretest"
+         preTestBtn(welcomeButton);
 
        } else {
          welcomeButton.innerHTML = "Start Tour";
        }
+
        welcomeModal.classList.add("visible");
 
        saveSceneListStatus();
@@ -971,7 +965,7 @@
 
       // Add click event handler.
       wrapper.addEventListener('click', function() {
-        console.log("directions clicked");
+
       });
 
       // Prevent touch and scroll events from reaching the parent element.
@@ -1030,16 +1024,15 @@
   }
   //------------------- end tour viewer
 
-
   function saveSceneListStatus () {
     var sceneList = document.querySelector("#sceneList");
 
     if (sceneList.classList == "enabled") {
       sceneList.classList.add("reopen");
-      console.log("reopen");
+    
       return true;
     } else {
-    //  console.log("do not reopen");
+
       return false;
     }
   }
@@ -1051,34 +1044,77 @@
     //make hotspot counter visible
     counterElement.classList.remove("hide");
       var icon = '<i class="fas fa-check-circle green"></i>';
-      var elements =  document.querySelectorAll(".hotspot .info-hotspot-icon-wrapper");
+      var elements =  document.querySelectorAll(".hotspot.info-hotspot");
       hotspotsTotal = elements.length;
+
       document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
+
       elements.forEach(function (hotspot) {
+
         hotspot.addEventListener("click", function(e){
-           var target = (e.target) ? e.target : e.srcElement;
+           var target = ( e.currentTarget ) ? e.currentTarget : e.srcElement;
            var newEl = document.createElement("i");
+           newEl.classList.add('fas' , 'fa-check-circle', 'visited');
+
 
           if ( !target.parentNode.classList.contains('clicked') ) {
-            target.parentNode.appendChild(newEl);
-            newEl.classList.add('fas' , 'fa-check-circle', 'visited');
-            //console.log(target);
+            target.appendChild(newEl);
+            target.classList.add("clicked");
           }
-            target.parentNode.classList.add("clicked");
+
             var hotspotClickedElements = document.body.querySelectorAll(".clicked");
             hotspotsClicked = hotspotClickedElements.length;
 
-            document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
+            document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal;
+
+            if ((hotspotsTotal == hotspotsClicked) && data.settings.posttest.enable) {
+
+
+              postTestBtn(document.body.querySelector("#hotspotCounter"));
+              data.settings.posttest.enable = false;
+            }
         });
       });
     }
 
+  function preTestBtn(welcomeButton) {
+    var pretestURL = data.settings.pretest.url;
+    var welcomeButtonForm = document.querySelector(".start-btn");
+
+    welcomeButtonForm.action = pretestURL;
+    welcomeButtonForm.method = "get";
+    welcomeButtonForm.target = "_blank";
+    welcomeButton.innerHTML = "Begin Pretest"
+  }
+
+  function postTestBtn(el) {
+
+    var postTestUrl = data.settings.posttest.url;
+
+    var postTestBtn = document.createElement("button");
+    var postTestForm = document.createElement("form");
+
+    postTestForm.action = postTestUrl;
+    postTestForm.method = "get";
+    postTestForm.target = "_blank";
+    postTestBtn.innerHTML = "Begin post test";
+    postTestForm.classList.add("post-test");
+
+    postTestForm.appendChild(postTestBtn);
+    el.appendChild(postTestForm);
+  }
+
   function hideHint() {
     document.querySelector("#hint").classList.add("hide");
+  }
+
+  function showHint() {
+    document.querySelector("#hint").classList.remove("hide");
   }
   // Display the initial scene.
   document.addEventListener("DOMContentLoaded", function(event) {
     if (data.settings.introVideo.enable){
+      showHint();
       createVideo();
     } else {
       hideHint();
