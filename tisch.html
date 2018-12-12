@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medicine Virtual Tour - Tisch</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <style>@-ms-viewport {width: device-width;}</style>
+  <link rel="stylesheet" href="css/reset.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+</head>
+<body class="multiple-scenes ">
+  <div id="hint" class="start-btn hide"><button>17th Floor</button>
+    <i class="fas fa-arrow-alt-circle-up fa-5x"></i>
+      <i class="fas fa-arrow-alt-circle-down fa-5x"></i></div>
+  <div id="page-wrap">
+    <div id="pano"></div>
+    <div id="sceneList">
+      <ul class="scenes">
+
+        <a href="#" class="scene" data-id="0-17th_floor_lobby_center">
+          <li class="text">17th Floor Lobby</li>
+        </a>
+
+        <a href="#" class="scene" data-id="1-17th_floor_lobby_west">
+          <li class="text">17th Floor Lobby West</li>
+        </a>
+
+        <a href="#" class="scene" data-id="2-conference_room">
+          <li class="text">Conference Room</li>
+        </a>
+
+        <a href="#" class="scene" data-id="3-east_west_entrance">
+          <li class="text">East West Entrance</li>
+        </a>
+
+        <a href="#" class="scene" data-id="4-east_entrance">
+          <li class="text">East Entrance</li>
+        </a>
+
+        <a href="#" class="scene" data-id="5-east_hallway">
+          <li class="text">East Hallway</li>
+        </a>
+
+        <a href="#" class="scene" data-id="6-east_center">
+          <li class="text">East Center</li>
+        </a>
+
+        <a href="#" class="scene" data-id="7-east_nursing_station">
+          <li class="text">East Nursing Station</li>
+        </a>
+
+      </ul>
+    </div>
+    <div id="tisch-map" class="map">
+      <span id="point" class="locus0">
+        <svg width="26" height="26" xmlns="http://www.w3.org/2000/svg">
+          <ellipse ry="8" rx="8" id="svg_1" cy="16" cx="13" fill="#5f00bf"/>
+          <polygon points="20,12 6,12 13,3" fill="#5f00bf" />
+        </svg>
+      </span>
+    </div>
+    <div id="hotspotCounter" class="hide">
+      Visited <span>0/0</span> information markers
+    </div>
+
+    <div id="titleBar">
+      <h1 class="sceneName"></h1>
+    </div>
+    <a href="#" class="" id="objectiveToggle"><i class="fas fa-question fa-lg"></i></a>
+    <a href="#" id="autorotateToggle">
+      <img class="icon off" src="img/play.png">
+      <img class="icon on" src="img/pause.png">
+    </a>
+    <a href="#" id="fullscreenToggle">
+      <img class="icon off" src="img/fullscreen.png">
+      <img class="icon on" src="img/windowed.png">
+    </a>
+    <a href="#" id="sceneListToggle">
+      <img class="icon off" src="img/expand.png">
+      <img class="icon on" src="img/collapse.png">
+    </a>
+    <a href="#" id="viewUp" class="viewControlButton viewControlButton-1">
+      <img class="icon" src="img/up.png">
+    </a>
+    <a href="#" id="viewDown" class="viewControlButton viewControlButton-2">
+      <img class="icon" src="img/down.png">
+    </a>
+    <a href="#" id="viewLeft" class="viewControlButton viewControlButton-3">
+      <img class="icon" src="img/left.png">
+    </a>
+    <a href="#" id="viewRight" class="viewControlButton viewControlButton-4">
+      <img class="icon" src="img/right.png">
+    </a>
+    <a href="#" id="viewIn" class="viewControlButton viewControlButton-5">
+      <img class="icon" src="img/plus.png">
+    </a>
+    <a href="#" id="viewOut" class="viewControlButton viewControlButton-6">
+      <img class="icon" src="img/minus.png">
+    </a>
+    <div class="info-hotspot-modal welcome">
+      <div id="welcome-modal">
+      <div class="info-hotspot-header">
+        <div class="info-hotspot-icon-wrapper"></div>
+        <div class="info-hotspot-title-wrapper">
+          <div class="info-hotspot-title">
+          </div>
+        </div>
+        <div class="info-hotspot-close-wrapper">
+          <img src="img/close.png" class="info-hotspot-close-icon">
+        </div>
+      </div>
+
+      <div class="info-hotspot-text">
+        <h1 id="welcomeTitle"></h1>
+        <p id="welcomeDescription"></p>
+        <ul id="objectives"></ul>
+        <ul id="credits"></ul>
+        <form class="start-btn" >
+          <button></button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/es5-shim.js"></script>
+<script src="js/screenfull.min.js" ></script>
+<script src="js/eventShim.js"></script>
+<script src="js/classList.js"></script>
+<script src="js/requestAnimationFrame.js" ></script>
+<script src="js/bowser.min.js" ></script>
+<script src="js/easing.js" ></script>
+<script src="js/marzipano.js" ></script>
+
+<script src="js/VideoAsset.js"></script>
+<script src="js/transitionfunctions.js" ></script>
+
+<script src="js/data_tisch.js"></script>
+<script src="js/index.js"></script>
+</body>
+
+</html>

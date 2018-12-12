@@ -272,6 +272,8 @@
     });
     if (data.settings.autorotateEnabled) {
       autorotateToggleElement.classList.add('enabled');
+       startAutorotate();
+
     }
 
     // Set handler for autorotate toggle.
@@ -335,19 +337,25 @@
       welcomeTitleElement.innerHTML = title;
       welcomeDescElement.innerHTML = description;
 
-      objectives.forEach(function(objective){
+
+      if (objectives) {
+        objectives.forEach(function(objective){
         var objEl = document.createElement("li");
         objEl.innerHTML = objective.text;
         objectivesElement.append(objEl);
 
-      });
+        });
+      }
+
+      if (credits) {
        credits.forEach(function(credit) {
          var creditEl = document.createElement("li");
          creditEl.innerHTML = credit.name + ", " + credit.title;
          creditsElement.append(creditEl);
-       });
+        });
+      }
 
-       var hide = function () {
+      var hide = function () {
 
          welcomeModal.classList.remove('visible');
 
@@ -355,9 +363,10 @@
        // Hide content when close icon is clicked.
        document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', function() {
          hide();
-         //autorotateToggleElement.classList.add('enabled');
-         //startAutorotate();
-
+         if(data.settings.autorotateEnabled) {
+           autorotateToggleElement.classList.add('enabled');
+           startAutorotate();
+        }
        });
 
        objectiveToggleElement.addEventListener('click', function() {
@@ -368,12 +377,14 @@
        var welcomeButton = document.querySelector("#welcome-modal .start-btn button");
        var pretest = data.settings.pretest.enable;
 
-       welcomeButton.addEventListener('click', function() {
-         hide();
-
-         // autorotateToggleElement.classList.add('enabled');
-         // startAutorotate();
-       });
+       if(welcomeButton) {
+         welcomeButton.addEventListener('click', function() {
+           hide();
+          if(data.settings.autorotateEnabled) {
+            autorotateToggleElement.classList.add('enabled');
+            startAutorotate();
+          }
+        });
 
        if (pretest) {
 
@@ -382,7 +393,7 @@
        } else {
          welcomeButton.innerHTML = "Start Tour";
        }
-
+     }
        welcomeModal.classList.add("visible");
 
        saveSceneListStatus();

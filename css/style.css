@@ -1177,6 +1177,13 @@ body.view-control-buttons .viewControlButton {
   line-height: 100%;
 }
 
+#welcome-modal h2  {
+  font-size: 1.5rem;
+  margin: 20px;
+  line-height: 100%;
+}
+
+
 .pulsating-circle {
   position: absolute;
   left: 50%;
@@ -1685,6 +1692,11 @@ form.post-test {
   padding-bottom: 10px;
 }
 
-.hide {
+.hide, #no-map, .no-counter {
   display: none;
+}
+
+body.blurred #pano{
+
+
 }

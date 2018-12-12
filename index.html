@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 </head>
-<body class="multiple-scenes ">
+<body class="blurred">
   <div id="hint" class="start-btn hide"><button>17th Floor</button>
     <i class="fas fa-arrow-alt-circle-up fa-5x"></i>
       <i class="fas fa-arrow-alt-circle-down fa-5x"></i></div>
@@ -20,41 +20,13 @@
     <div id="sceneList">
       <ul class="scenes">
 
-        <a href="#" class="scene" data-id="0-17th_floor_lobby_center">
-          <li class="text">17th Floor Lobby</li>
-        </a>
-
-        <a href="#" class="scene" data-id="1-17th_floor_lobby_west">
-          <li class="text">17th Floor Lobby West</li>
-        </a>
-
-        <a href="#" class="scene" data-id="2-conference_room">
-          <li class="text">Conference Room</li>
-        </a>
-
-        <a href="#" class="scene" data-id="3-east_west_entrance">
-          <li class="text">East West Entrance</li>
-        </a>
-
-        <a href="#" class="scene" data-id="4-east_entrance">
-          <li class="text">East Entrance</li>
-        </a>
-
-        <a href="#" class="scene" data-id="5-east_hallway">
-          <li class="text">East Hallway</li>
-        </a>
-
-        <a href="#" class="scene" data-id="6-east_center">
-          <li class="text">East Center</li>
-        </a>
-
-        <a href="#" class="scene" data-id="7-east_nursing_station">
-          <li class="text">East Nursing Station</li>
-        </a>
+          <a href="#" class="scene" data-id="0-nyu-langone-health-new-science-building-courtyard">
+            <li class="text">NYU Langone Health New Science Building Courtyard</li>
+          </a>
 
       </ul>
     </div>
-    <div id="tisch-map" class="map">
+    <div id="no-map" class="map">
       <span id="point" class="locus0">
         <svg width="26" height="26" xmlns="http://www.w3.org/2000/svg">
           <ellipse ry="8" rx="8" id="svg_1" cy="16" cx="13" fill="#5f00bf"/>
@@ -62,7 +34,7 @@
         </svg>
       </span>
     </div>
-    <div id="hotspotCounter" class="hide">
+    <div id="hotspotCounter" class="hide no-counter">
       Visited <span>0/0</span> information markers
     </div>
 
@@ -117,10 +89,14 @@
         <h1 id="welcomeTitle"></h1>
         <p id="welcomeDescription"></p>
         <ul id="objectives"></ul>
+
+        <h2><a href="tisch.html">Tisch 7th Floor <i class="fas fa-chevron-circle-right"></i></a></h2>
+        <h2><a href="kimmel.html">Kimmel 12th Floor <i class="fas fa-chevron-circle-right"></i></a></h2>
+
         <ul id="credits"></ul>
-        <form class="start-btn" >
+        <!-- <form class="start-btn" >
           <button></button>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
@@ -137,7 +113,7 @@
 <script src="js/VideoAsset.js"></script>
 <script src="js/transitionfunctions.js" ></script>
 
-<script src="js/data_tisch.js"></script>
+<script src="js/data_landing.js"></script>
 <script src="js/index.js"></script>
 </body>
 
