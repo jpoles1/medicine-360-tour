@@ -27,7 +27,7 @@
   var sceneNameElement = document.querySelector('#titleBar .sceneName');
   var sceneListElement = document.querySelector('#sceneList');
   var sceneElements = document.querySelectorAll('#sceneList .scene');
-  var mapElement = document.querySelector('#map');
+  var mapElement = document.querySelector('.map');
   var counterElement = document.querySelector('#hotspotCounter');
   var sceneListToggleElement = document.querySelector('#sceneListToggle');
   var autorotateToggleElement = document.querySelector('#autorotateToggle');
@@ -1029,7 +1029,7 @@
 
     if (sceneList.classList == "enabled") {
       sceneList.classList.add("reopen");
-    
+
       return true;
     } else {
 

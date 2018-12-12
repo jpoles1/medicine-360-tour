@@ -1331,7 +1331,7 @@ body.view-control-buttons .viewControlButton {
   100% { opacity:0; transform: translateX(-9vw); }
 }
 
-#map {
+.map {
   position:absolute;
   left: -220px;
   bottom: 56px;
@@ -1346,30 +1346,32 @@ body.view-control-buttons .viewControlButton {
 
   transition: margin-left 0.5s 0s, bottom 0s 0.5s, transform 0s 0.5s, background-color 0s 0.5s;
   transition-timing-function: ease-in-out;
-  background-image: url(../img/map.png);
-  background-repeat: no-repeat;
-
 }
 
-.desktop #map.enabled {
+#tisch-map{
+  background-image: url(../img/tisch_map.png);
+  background-repeat: no-repeat;
+}
+
+.desktop .map.enabled {
   transition: margin-left 0.5s;
 }
 
-.mobile #map.enabled{
+.mobile .map.enabled{
   background-color: transparent;
   transition: margin-left 0.5s ease-in-out;
 
 }
-#map.enabled {
+.map.enabled {
   margin-left: 220px;
 }
 @media (max-height: 540px) {
-  #map {
+  .map {
     margin-left: 0px !important;
   }
 }
 
-.mobile #map.enabled {
+.mobile .map.enabled {
 
     margin-left: 200px;
     transform: scale(.7);
@@ -1387,38 +1389,38 @@ body.view-control-buttons .viewControlButton {
     left: 30px;
 }
 
-.locus0{
+#tisch-map .locus0{
   bottom: 0px;
   left: 50px;
 }
-.locus1{
+#tisch-map .locus1{
   bottom: 0px;
   left: 10px;
   transform: rotate(90deg)
 }
-.locus2{
+#tisch-map .locus2{
   bottom: 50px;
   left: 55px;
 }
-.locus3{
+#tisch-map .locus3{
   bottom: 95px;
     left: 55px;
 }
-.locus4{
+#tisch-map .locus4{
   bottom: 86px;
   left: 130px;
   transform: rotate(-90deg)
 }
-.locus5{
+#tisch-map .locus5{
   bottom: 86px;
   left: 170px;
 }
-.locus6{
+#tisch-map .locus6{
   bottom: 155px;
   left: 175px;
   transform: rotate(-90deg);
 }
-.locus7{
+#tisch-map .locus7{
   bottom: 155px;
   left: 200px;
   transform: rotate(-90deg);

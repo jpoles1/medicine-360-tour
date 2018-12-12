@@ -591,11 +591,11 @@ var APP_DATA = {
   "name": "Medicine Orientation Virtual Tour",
   "welcome": {
     "title":"Medicine Virtual Tour - Tisch 7th Floor",
-    "description" : "Welcome to the Virtual Tour of the Medicine Floor. This will provide you a sense of the space, materials and people you will meet when you arrive. Use your mouse or finger to move around the 360° images.",
+    "description" : "Welcome to the Virtual Tour of the Medicine Floor in Tisch. This will provide you a sense of the space, materials and people you will meet when you arrive. Use your mouse or finger to move around the 360° images.",
     "objectives": [
       {
         "id": "01",
-        "text": "Complete the pretest."
+        "text": "Complete the pretest and post-test if available."
       },
       {
         "id": "02",
@@ -636,15 +636,15 @@ var APP_DATA = {
     "fullscreenButton": false,
     "viewControlButtons": false,
     "introVideo" : {
-      "enable": true,
+      "enable": false,
       "url": 'video/elevator.mp4'
     },
     "pretest": {
-      "enable": true,
+      "enable": false,
       "url":"https://nyumc.qualtrics.com/"
     },
     "posttest": {
-      "enable": true,
+      "enable": false,
       "url":"https://nyumc.qualtrics.com/"
     }
   }

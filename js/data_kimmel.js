@@ -213,7 +213,12 @@ var APP_DATA = {
           "yaw": 3.124756987789409,
           "pitch": 0.060059329966643205,
           "rotation": 0,
-          "target": "2-room-12-01"
+          "target": "2-room-12-01",
+          "back" : {
+            "yaw": -3,
+            "pitch": 0,
+            "fov": 1.8073895612144246
+          }
         },
         {
           "yaw": 0.22031270315098794,
@@ -271,7 +276,7 @@ var APP_DATA = {
       "faceSize": 1344,
       "initialViewParameters": {
         "pitch": 0,
-        "yaw": 0,
+        "yaw": -3.2,
         "fov": 1.5707963267948966
       },
       "linkHotspots": [
@@ -279,7 +284,12 @@ var APP_DATA = {
           "yaw": 0,
           "pitch": 0,
           "rotation": 0,
-          "target": "3-room-12-02"
+          "target": "3-room-12-02",
+          "back" : {
+            "yaw": 0,
+            "pitch": 0,
+            "fov": 1.8073895612144246
+          }
         }
       ],
       "infoHotspots": [
@@ -351,7 +361,12 @@ var APP_DATA = {
           "yaw": -0.22830700300221984,
           "pitch": 0.02694086065567447,
           "rotation": 0,
-          "target": "3-room-12-02"
+          "target": "3-room-12-02",
+          "back" : {
+            "yaw": -3,
+            "pitch": 0,
+            "fov": 1.8073895612144246
+          }
         }
       ],
       "infoHotspots": [
@@ -615,7 +630,12 @@ var APP_DATA = {
           "yaw": 3.112739201310781,
           "pitch": 0.08504587305118605,
           "rotation": 0,
-          "target": "3-room-12-02"
+          "target": "3-room-12-02",
+          "back" : {
+            "yaw": -3,
+            "pitch": 0,
+            "fov": 1.5
+          }
         }
       ],
       "infoHotspots": [
@@ -693,7 +713,12 @@ var APP_DATA = {
           "yaw": -3.012737719335874,
           "pitch": 0.012619002985790218,
           "rotation": 0,
-          "target": "3-room-12-02"
+          "target": "3-room-12-02",
+          "back" : {
+            "yaw": -3,
+            "pitch": 0,
+            "fov": 1.8073895612144246
+          }
         }
       ],
       "infoHotspots": [
@@ -752,8 +777,13 @@ var APP_DATA = {
         {
           "yaw": -2.950320932769886,
           "pitch": 0.4232170738502017,
-          "rotation": 3.141592653589793,
-          "target": "10-room-12-05"
+          "rotation": 0,
+          "target": "10-room-12-05",
+          "back" : {
+            "yaw": -3,
+            "pitch": 0,
+            "fov": 1.8073895612144246
+          }
         }
       ],
       "infoHotspots": [
@@ -801,7 +831,12 @@ var APP_DATA = {
           "yaw": -3.065369401757705,
           "pitch": 0.022819843603013368,
           "rotation": 0,
-          "target": "10-room-12-05"
+          "target": "10-room-12-05",
+          "back" : {
+            "yaw": -3,
+            "pitch": 0,
+            "fov": 1.8073895612144246
+          }
         },
         {
           "yaw": -2.6499670160033943,
@@ -855,7 +890,12 @@ var APP_DATA = {
           "yaw": -1.6366260029950706,
           "pitch": 0.16324904041004018,
           "rotation": 0,
-          "target": "10-room-12-05"
+          "target": "10-room-12-05",
+          "back" : {
+            "yaw": 1.5,
+            "pitch": 0,
+            "fov": 1.8073895612144246
+          }
         }
       ],
       "infoHotspots": [
@@ -886,11 +926,11 @@ var APP_DATA = {
   "name": "Medicine Orientation Virtual Tour",
   "welcome": {
     "title":"Medicine Virtual Tour - Kimmel 12th Floor",
-    "description" : "Welcome to the Virtual Tour of the Medicine Floor. This will provide you a sense of the space, materials and people you will meet when you arrive. Use your mouse or finger to move around the 360° images.",
+    "description" : "Welcome to the Virtual Tour of the Medicine Floor in Kimmel. This will provide you a sense of the space, materials and people you will meet when you arrive. Use your mouse or finger to move around the 360° images.",
     "objectives": [
       {
         "id": "01",
-        "text": "Complete the pretest."
+        "text": "Complete the pre-test and post-test if available."
       },
       {
         "id": "02",
