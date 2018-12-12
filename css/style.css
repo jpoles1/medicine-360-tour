@@ -1353,6 +1353,12 @@ body.view-control-buttons .viewControlButton {
   background-repeat: no-repeat;
 }
 
+#kimmel-map {
+  background-image: url(../img/kimmel_map.png);
+  background-repeat: no-repeat;
+}
+
+
 .desktop .map.enabled {
   transition: margin-left 0.5s;
 }
@@ -1425,6 +1431,84 @@ body.view-control-buttons .viewControlButton {
   left: 200px;
   transform: rotate(-90deg);
 }
+
+#kimmel-map .locus0{
+  bottom: 0px;
+  right: 10px;
+}
+
+#kimmel-map .locus1{
+  bottom: 5px;
+  left: 60px;
+  transform: rotate(90deg);
+}
+
+#kimmel-map .locus2{
+  bottom: 30px;
+  left: 60px;
+}
+
+#kimmel-map .locus3{
+  bottom: 60px;
+  left: 60px;
+}
+
+#kimmel-map .locus4{
+  bottom: 60px;
+  left: 100px;
+  transform: rotate(-90deg);
+}
+
+#kimmel-map .locus5{
+  bottom: 120px;
+  left: 60px;
+  transform: rotate(180deg);
+}
+
+#kimmel-map .locus6{
+  bottom: 120px;
+  left: 100px;
+  transform: rotate(180deg);
+}
+
+#kimmel-map .locus7{
+  bottom: 115px;
+  left: 130px;
+  transform: rotate(180deg);
+}
+
+#kimmel-map .locus8{
+  bottom: 140px;
+  left: 130px;
+  transform: rotate(90deg);
+}
+
+#kimmel-map .locus9{
+  bottom: 145px;
+  left: 60px;
+}
+
+#kimmel-map .locus10{
+  bottom: 175px;
+  left: 60px;
+}
+
+#kimmel-map .locus11{
+  bottom: 185px;
+  left: 45px;
+}
+
+#kimmel-map .locus12{
+  bottom: 195px;
+  left: 45px;
+}
+
+#kimmel-map .locus13{
+  bottom: 170px;
+  left: 15px;
+  transform: rotate(180deg);
+}
+
 
 .desktop #hotspotCounter {
   position: absolute;
