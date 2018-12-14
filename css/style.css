@@ -1765,3 +1765,11 @@ footer .info .institute {
  line-height: 30px;
  font-size: 14px;
 }
+
+.feedback{
+  padding: 10px 0 0 0;
+}
+
+.feedback a {
+  float:right;
+}
