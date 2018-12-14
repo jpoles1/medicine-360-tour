@@ -377,12 +377,14 @@
        var welcomeButton = document.querySelector("#welcome-modal .start-btn button");
        var pretest = data.settings.pretest.enable;
 
+
        if(welcomeButton) {
+         welcomeButton.type = "button";
          welcomeButton.addEventListener('click', function() {
            hide();
           if(data.settings.autorotateEnabled) {
-            autorotateToggleElement.classList.add('enabled');
-            startAutorotate();
+           autorotateToggleElement.classList.add('enabled');
+           startAutorotate();
           }
         });
 
@@ -1095,7 +1097,9 @@
     welcomeButtonForm.action = pretestURL;
     welcomeButtonForm.method = "get";
     welcomeButtonForm.target = "_blank";
-    welcomeButton.innerHTML = "Begin Pretest"
+    welcomeButton.type = "submit";
+    welcomeButton.innerHTML = "Begin Pretest";
+
   }
 
   function postTestBtn(el) {
@@ -1108,10 +1112,11 @@
     postTestForm.action = postTestUrl;
     postTestForm.method = "get";
     postTestForm.target = "_blank";
+    postTestBtn.type = "submit";
     postTestBtn.innerHTML = "Begin post test";
     postTestForm.classList.add("post-test");
-
     postTestForm.appendChild(postTestBtn);
+
     el.appendChild(postTestForm);
   }
 
