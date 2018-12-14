@@ -363,6 +363,9 @@
        // Hide content when close icon is clicked.
        document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', function() {
          hide();
+         if(document.querySelector("footer")){
+           document.querySelector("footer").classList.toggle("visible");
+         }
          if(data.settings.autorotateEnabled) {
            autorotateToggleElement.classList.add('enabled');
            startAutorotate();
@@ -372,6 +375,9 @@
        objectiveToggleElement.addEventListener('click', function() {
          var welcomeModalElement = document.querySelector(".welcome");
          welcomeModalElement.classList.toggle('visible');
+         if(document.querySelector("footer")){
+           document.querySelector("footer").classList.toggle("visible");
+         }
        });
 
        var welcomeButton = document.querySelector("#welcome-modal .start-btn button");

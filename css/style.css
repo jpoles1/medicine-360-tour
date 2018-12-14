@@ -1696,7 +1696,72 @@ form.post-test {
   display: none;
 }
 
-body.blurred #pano{
 
+footer {
 
+    z-index: 11000 !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    line-height: 30px;
+    background-color: rgb(58,68,84);
+    background-color: rgba(58,68,84,0.8);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    visibility: hidden;
+}
+footer.visible {
+  visibility: visible;
+}
+
+ footer .info {
+  display:block;
+  margin: 0 2%;
+  padding: 10px 0 10px;
+}
+
+ footer .info .logo {
+  float: left;
+  vertical-align: middle;
+}
+
+footer .info .logo img{
+  width: 100px;
+}
+
+footer .info .institute {
+  float: right;
+  display: inline-block;
+  margin:0;
+  padding:0;
+  line-height: 55px;
+}
+
+.mobile footer {
+  text-align: center;
+}
+
+.mobile footer .info{
+  padding:0;
+}
+
+.mobile footer .info .logo{
+  margin: 0 auto;
+  padding: 5px 0 0 0;
+  float:none;
+  display: inline-block;
+}
+.mobile footer .info .logo {
+  width:100px;
+}
+
+.mobile footer .info .institute{
+ display: block;
+ float: none;
+ margin: 0 auto;
+ line-height: 30px;
+ font-size: 14px;
 }
