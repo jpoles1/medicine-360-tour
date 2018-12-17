@@ -295,8 +295,8 @@
       document.querySelector("#welcome-modal .info-hotspot-close-wrapper").addEventListener("click", function(){
         showSceneList();
       })
-      document.querySelector(".info-hotspot-modal.welcome").addEventListener("click", function(){
-        showSceneList();
+      document.querySelector(".info-hotspot-modal.welcome .start-btn").addEventListener("click", function(){
+      showSceneList();
       })
     } else {
       hideSceneList();
@@ -348,11 +348,21 @@
       }
 
       if (credits) {
-       credits.forEach(function(credit) {
-         var creditEl = document.createElement("li");
-         creditEl.innerHTML = credit.name + ", " + credit.title;
-         creditsElement.append(creditEl);
-        });
+        var creditsBtn = document.querySelector("#creditsBtn");
+
+        if(creditsBtn) {
+          creditsBtn.classList.remove("hide");
+
+          creditsBtn.addEventListener("click", function(){
+            creditsElement.classList.toggle("hide");
+          })
+
+         credits.forEach(function(credit) {
+           var creditEl = document.createElement("li");
+           creditEl.innerHTML = credit.name + ", " + credit.title;
+           creditsElement.append(creditEl);
+          });
+        }
       }
 
       var hide = function () {
