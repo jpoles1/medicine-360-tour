@@ -1072,7 +1072,7 @@ padding-bottom: 20px;
 
 #objectives li {
   list-style-type: circle;
-  padding: 0 0 10px 10px;
+  padding: 0 0 10px 0px;
 }
 
 #credits li {
@@ -1179,7 +1179,7 @@ body.view-control-buttons .viewControlButton {
 
 #welcome-modal h2  {
   font-size: 1.5rem;
-  margin: 20px;
+  margin: 15px;
   line-height: 100%;
 }
 
