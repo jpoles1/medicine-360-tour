@@ -42,8 +42,19 @@ var APP_DATA = {
   "name": "Medicine Orientation Virtual Tour",
   "welcome": {
     "title":"Medicine Virtual Tour",
-    "description" : "Welcome to the Virtual Tour of the Medicine Floor in Tisch. This will provide you a sense of the space, materials and people you will meet when you arrive. Use your mouse or finger to move around the 360° images.",
-    "objectives": [],
+    "description" : "Welcome to the Virtual Tour of the Medicine Floors in Tisch and Kimmel. This will provide you a sense of the space, materials and people you will meet when you arrive. Use your mouse or finger to move around the 360° images.",
+    "objectives": [
+
+      {
+      "id":"01",
+      "text":"Explore all information hotspots."
+      },
+      {
+      "id":"02",
+      "text":"Complete any prompted quizzes."  
+      },
+
+    ],
     "credits" : [
       {
         "name":"Aron Mednick",

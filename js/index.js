@@ -295,12 +295,17 @@
       document.querySelector("#welcome-modal .info-hotspot-close-wrapper").addEventListener("click", function(){
         showSceneList();
       })
-      document.querySelector(".info-hotspot-modal.welcome .start-btn").addEventListener("click", function(){
-      showSceneList();
-      })
-    } else {
-      hideSceneList();
-    }
+
+
+      if (document.querySelector(".info-hotspot-modal.welcome .start-btn")){
+          document.querySelector(".info-hotspot-modal.welcome .start-btn").addEventListener("click", function(){
+            showSceneList();
+        })
+      }
+
+      } else {
+        hideSceneList();
+      }
 
     // DOM elements for view controls.
     var viewUpElement = document.querySelector('#viewUp');
