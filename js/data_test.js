@@ -1,6 +1,6 @@
 var APP_DATA = {
   "scenes": [
-//center
+//lobby center
     {
       "id": "0-17th_floor_lobby_center",
       "name": "17th Floor Lobby Center",
@@ -39,12 +39,6 @@ var APP_DATA = {
 
       ],
       "infoHotspots": [
-        {
-          "yaw": 3.01175515726986,
-          "pitch": 0.026907942254371875,
-          "title": "Tisch South Elevators",
-          "text": "These elevators stop on floors 1-2, 8-17."
-        },
         {
           "yaw": 1.5,
           "pitch": 0.026907942254371875,
@@ -104,37 +98,8 @@ var APP_DATA = {
           "target": "6-east_center"
         }
       ],
-      "infoHotspots": [
-        {
-          "yaw": 1.95,
-          "pitch": -0.131783107994087,
-          "title": "Patient Room TH 1724",
-          "text": "In the Tisch building, patients are identified by their room number and bed.  For example: 1724/01 is on the 17th floor, room 1724 and the patient is by the door; 1724/02 - the patient would be by the window."
-        },
-        {
-          "yaw": 3.109203462411516,
-          "pitch": -0.08526820239544364,
-          "title": "Hand sanitizer",
-          "text": "Staff should wash their hand on entering and exiting a room every time."
-        }
-      ],
-      "modalHotspots": [
-        {
-          "yaw": -1.4,
-          "pitch": 0.3,
-          "title": "MedCart",
-          "text": "A MedCart is a workstation on wheels that has drawers for medications and tools needed by the nurses (RNs).  Physicians and students should not use these workstations so they can be reserved for RN use.",
-          "images" : [
-            {
-              "imageURL":"img/medcart.jpg",
-              "imageAlt" : "medcart",
-              "text" : "medcart"
-            }
-          ],
-
-          "actionLink":"https://nyulangone.org" // to image carousel in new window
-        }
-      ],
+      "infoHotspots": [],
+      "modalHotspots": [],
       "roleHotspots": [
         {
           "yaw": -1.5,

@@ -1142,6 +1142,32 @@
     el.appendChild(postTestForm);
   }
 
+  function debugVisted(){
+
+    var icon = '<i class="fas fa-check-circle green"></i>';
+    var elements =  document.querySelectorAll(".hotspot.info-hotspot");
+    hotspotsTotal = elements.length;
+
+    document.querySelector("#debugBtn button").addEventListener("click" , function() {
+      console.log("debug: " + hotspotsTotal + " hotspots visted.");
+
+      elements.forEach(function (hotspot) {
+           var newEl = document.createElement("i");
+           newEl.classList.add('fas' , 'fa-check-circle', 'visited');
+
+          //if ( !hotspot.parentNode.classList.contains('clicked') ) {
+            hotspot.appendChild(newEl);
+            hotspot.classList.add("clicked");
+          //}
+
+      });
+      var hotspotClickedElements = document.body.querySelectorAll(".clicked");
+      hotspotsClicked = hotspotClickedElements.length;
+      document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal;
+    });
+
+}
+
   function hideHint() {
     document.querySelector("#hint").classList.add("hide");
   }
@@ -1151,6 +1177,9 @@
   }
   // Display the initial scene.
   document.addEventListener("DOMContentLoaded", function(event) {
+    if (document.querySelector("#debugBtn")) {
+      debugVisted();
+    };
     if (data.settings.introVideo.enable){
       showHint();
       createVideo();
