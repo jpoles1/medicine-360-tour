@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Medicine Virtual Tour - Tisch</title>
+  <title>Medicine Virtual Tour - Testing</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
@@ -11,22 +11,26 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 </head>
-<body class="blurred">
-  <div id="hint" class="start-btn hide"><button>17th Floor</button>
+<body class="multiple-scenes ">
+  <div id="hint" class="start-btn hide"><button>12th Floor</button>
     <i class="fas fa-arrow-alt-circle-up fa-5x"></i>
       <i class="fas fa-arrow-alt-circle-down fa-5x"></i></div>
   <div id="page-wrap">
     <div id="pano"></div>
     <div id="sceneList">
-      <ul class="scenes hide">
-
-          <a href="#" class="scene" data-id="0-nyu-langone-health-new-science-building-courtyard">
-            <li class="text">NYU Langone Health New Science Building Courtyard</li>
-          </a>
-
+      <ul class="scenes">
+        <a href="#" class="scene" data-id="0-17th_floor_lobby_center">
+          <li class="text">17th Floor Lobby</li>
+        </a>
+        <a href="#" class="scene" data-id="5-east_hallway">
+          <li class="text">East Hallway</li>
+        </a>
+        <a href="#" class="scene" data-id="6-east_center">
+          <li class="text">East Center</li>
+        </a>
       </ul>
     </div>
-    <div id="no-map" class="map">
+    <div id="tisch-map" class="map">
       <span id="point" class="locus0">
         <svg width="26" height="26" xmlns="http://www.w3.org/2000/svg">
           <ellipse ry="8" rx="8" id="svg_1" cy="16" cx="13" fill="#5f00bf"/>
@@ -34,7 +38,7 @@
         </svg>
       </span>
     </div>
-    <div id="hotspotCounter" class="hide no-counter">
+    <div id="hotspotCounter" class="hide">
       Visited <span>0/0</span> information markers
     </div>
 
@@ -89,26 +93,19 @@
         <h1 id="welcomeTitle"></h1>
         <p id="welcomeDescription"></p>
         <ul id="objectives"></ul>
-        <h2><a href="tisch.html">Tisch 17th Floor <i class="fas fa-chevron-circle-right"></i></a></h2>
-        <h2><a href="kimmel.html">Kimmel 12th Floor <i class="fas fa-chevron-circle-right"></i></a></h2>
-        <div id="creditsBtn" class=""><p><i class="fas fa-user-circle"></i>  <a href="#credits">Acknowledgements</a></p></div>
-        <ul id="credits" class="hide"></ul>
+        <form class="start-btn" >
+          <button></button>
+        </form>
+        <!-- <div id="creditsBtn" class=""><p><i class="fas fa-user-circle"></i>  <a href="#credits">Acknowledgements</a></p></div>
+        <ul id="credits" class="hide"></ul> -->
         <div class="feedback">
-        <hr>
-        <a href="mailto:edtech@nyulangone.org?Subject=Report%20Bug%20VR%20Tour" target="_top">Report a bug  <i class="fas fa-chevron-circle-right"></i></a>
+          <hr>
+          <a href="mailto:edtech@nyulangone.org?Subject=Report%20Bug%20VR%20Tour" target="_top">Report a bug  <i class="fas fa-chevron-circle-right"></i></a>
+        </div>
       </div>
     </div>
-    </div>
   </div>
-
 </div>
-<footer class="visible">
-  <div class="info">
-    <a href="https://nyulangone.org/" class="logo"><img src="https://github.com/ghobot/medicine-360-tour/raw/master/img/logo.png" alt="logo"/></a>
-    <a href="https://med.nyu.edu/departments-institutes/innovations-medical-education/" class="institute">Institute for Innovations in Medical Education</a>
-  </div>
-</footer>
-
 <script src="js/es5-shim.js"></script>
 <script src="js/screenfull.min.js" ></script>
 <script src="js/eventShim.js"></script>
@@ -121,7 +118,8 @@
 <script src="js/VideoAsset.js"></script>
 <script src="js/transitionfunctions.js" ></script>
 
-<script src="js/data_landing.js"></script>
+<script src="js/data_test.js"></script>
 <script src="js/index.js"></script>
 </body>
+
 </html>

@@ -1113,13 +1113,14 @@
 
   function preTestBtn(welcomeButton) {
     var pretestURL = data.settings.pretest.url;
-    var welcomeButtonForm = document.querySelector(".start-btn");
+    var welcomeButtonForm = document.querySelector("form.start-btn");
 
     welcomeButtonForm.action = pretestURL;
     welcomeButtonForm.method = "get";
     welcomeButtonForm.target = "_blank";
     welcomeButton.type = "submit";
     welcomeButton.innerHTML = "Begin Pretest";
+    welcomeButtonForm.classList.add("pre-test");
 
   }
 
