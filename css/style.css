@@ -1157,7 +1157,7 @@ body.view-control-buttons .viewControlButton {
   width: 700px;
   max-width: 100%;
   text-align: center;
-  overflow-y: scroll;
+  overflow-y: auto;
 
 }
 
