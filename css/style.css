@@ -321,7 +321,7 @@ body.fullscreen-enabled.mobile #autorotateToggle {
   top: 40px;
   left: -220px;
   width: 220px;
-  max-height: calc(100vh - 40px - 56px - 220px);
+  max-height: calc(100vh - 40px - 56px - 220px - 20px);
   overflow-x: hidden;
   overflow-y: auto;
   margin-left: 0;
@@ -329,11 +329,14 @@ body.fullscreen-enabled.mobile #autorotateToggle {
   transition: margin-left 0.5s ease-in-out;
   background-color: rgb(58,68,84);
   background-color: rgba(58,68,84,0.8);
+  box-shadow: 0px 0px 8px 1px #333;
 }
-
+.desktop #sceneList{
+  border-bottom-right-radius: 3px;
+}
 .mobile #sceneList {
   top: 50px;
-  max-height: calc(100vh - 40px - 154px);
+  max-height: calc(100vh - 55px - 154px - 20px);
 }
 
 #sceneList .scenes {
@@ -1354,6 +1357,8 @@ body.view-control-buttons .viewControlButton {
   background-color: rgb(58,68,84);
   background-color: rgba(58,68,84,0.8);
   margin-left: 0;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
   /* -webkit-transition: margin-left 0.5s ease-in-out; */
 
   transition: margin-left 0.5s 0s, bottom 0s 0.5s, transform 0s 0.5s, background-color 0s 0.5s;
@@ -1370,7 +1375,9 @@ body.view-control-buttons .viewControlButton {
   background-repeat: no-repeat;
 }
 
-
+.desktop .map{
+  box-shadow: 0px 0px 8px 1px #333;
+}
 .desktop .map.enabled {
   transition: margin-left 0.5s;
 }
@@ -1521,7 +1528,11 @@ body.view-control-buttons .viewControlButton {
   transform: rotate(180deg);
 }
 
-
+#hotspotCounter{
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  box-shadow: 0px 0px 5px 1px #444;
+}
 .desktop #hotspotCounter {
   position: absolute;
   min-width:200px;
