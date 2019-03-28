@@ -15,7 +15,7 @@
  */
 'use strict';
 
-(function() {
+(function () {
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
   var screenfull = window.screenfull;
@@ -43,7 +43,7 @@
 
   // Detect desktop or mobile mode.
   if (window.matchMedia) {
-    var setMode = function() {
+    var setMode = function () {
       if (mql.matches) {
         document.body.classList.remove('desktop');
         document.body.classList.add('mobile');
@@ -61,7 +61,7 @@
 
   // Detect whether we are on a touch device.
   document.body.classList.add('no-touch');
-  window.addEventListener('touchstart', function() {
+  window.addEventListener('touchstart', function () {
     document.body.classList.remove('no-touch');
     document.body.classList.add('touch');
   });
@@ -76,9 +76,9 @@
     var introVideo;
     // Video requires WebGL support.
     var videoViewerOpts = {
-    stageType: 'webgl',
-    controls: {
-      mouseViewMode: data.settings.mouseViewMode
+      stageType: 'webgl',
+      controls: {
+        mouseViewMode: data.settings.mouseViewMode
       }
     };
 
@@ -93,12 +93,16 @@
     // The level size need not match the actual video dimensions because it is
     // only used to determine the most appropriate level to render, and no such
     // choice has to be made in this case.
-    var videoGeometry = new Marzipano.EquirectGeometry([ { width: 1 } ]);
+    var videoGeometry = new Marzipano.EquirectGeometry([{
+      width: 1
+    }]);
 
     // Create video view.
     // We display the video at a fixed vertical fov.
-    var videoLimiter = Marzipano.RectilinearView.limit.vfov(90*Math.PI/180, 90*Math.PI/180);
-    var videoView = new Marzipano.RectilinearView({ fov: Math.PI/2 }, videoLimiter);
+    var videoLimiter = Marzipano.RectilinearView.limit.vfov(90 * Math.PI / 180, 90 * Math.PI / 180);
+    var videoView = new Marzipano.RectilinearView({
+      fov: Math.PI / 2
+    }, videoLimiter);
 
     // Create video scene.
     var videoScene = videoViewer.createScene({
@@ -137,13 +141,13 @@
       introVideo.play();
 
 
-      waitForReadyState(introVideo, introVideo.HAVE_METADATA, 100, function() {
-        waitForReadyState(introVideo, introVideo.HAVE_ENOUGH_DATA, 100, function() {
+      waitForReadyState(introVideo, introVideo.HAVE_METADATA, 100, function () {
+        waitForReadyState(introVideo, introVideo.HAVE_ENOUGH_DATA, 100, function () {
           videoAsset.setVideo(introVideo);
         });
       });
 
-      introVideo.onended = function() {
+      introVideo.onended = function () {
         hideHint();
         videoViewer.destroy();
         panoElement.innerHTML = "";
@@ -157,37 +161,38 @@
     // The HTML5 video element exposes a `readystatechange` event that could be
     // listened for instead, but it seems to be unreliable on some browsers.
     function waitForReadyState(element, readyState, interval, done) {
-    var timer = setInterval(function() {
-      if (element.readyState >= readyState) {
-        clearInterval(timer);
-        done(null, true);
-      }
-    }, interval);
-  }
-  // ------------------ end video viewer
+      var timer = setInterval(function () {
+        if (element.readyState >= readyState) {
+          clearInterval(timer);
+          done(null, true);
+        }
+      }, interval);
+    }
+    // ------------------ end video viewer
   }
   // ------------------ start tour viewer
-  function createTour () {
-      // Viewer options.
+  function createTour() {
+    // Viewer options.
 
 
-      var viewerOpts = {
-        controls: {
-          mouseViewMode: data.settings.mouseViewMode
-        }
-      };
+    var viewerOpts = {
+      controls: {
+        mouseViewMode: data.settings.mouseViewMode
+      }
+    };
 
-      //attach the viewer to pano element
-      var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
-      // Create scenes.
-      var scenes = data.scenes.map(function(data) {
+    //attach the viewer to pano element
+    var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
+    // Create scenes.
+    var scenes = data.scenes.map(function (data) {
       var urlPrefix = "tiles";
       var source = Marzipano.ImageUrlSource.fromString(
-        urlPrefix + "/" + data.id + "/{z}/{f}/{y}/{x}.jpg",
-        { cubeMapPreviewUrl: urlPrefix + "/" + data.id + "/preview.jpg" });
+        urlPrefix + "/" + data.id + "/{z}/{f}/{y}/{x}.jpg", {
+          cubeMapPreviewUrl: urlPrefix + "/" + data.id + "/preview.jpg"
+        });
       var geometry = new Marzipano.CubeGeometry(data.levels);
 
-      var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100*Math.PI/180, 120*Math.PI/180);
+      var limiter = Marzipano.RectilinearView.limit.traditional(data.faceSize, 100 * Math.PI / 180, 120 * Math.PI / 180);
       var view = new Marzipano.RectilinearView(data.initialViewParameters, limiter);
 
       var scene = viewer.createScene({
@@ -199,33 +204,48 @@
 
 
       // Create link hotspots.
-      data.linkHotspots.forEach(function(hotspot) {
+      data.linkHotspots.forEach(function (hotspot) {
         var element = createLinkHotspotElement(hotspot);
-        scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+        scene.hotspotContainer().createHotspot(element, {
+          yaw: hotspot.yaw,
+          pitch: hotspot.pitch
+        });
       });
 
       // Create info hotspots.
-      data.infoHotspots.forEach(function(hotspot) {
+      data.infoHotspots.forEach(function (hotspot) {
         var element = createInfoHotspotElement(hotspot);
-        scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+        scene.hotspotContainer().createHotspot(element, {
+          yaw: hotspot.yaw,
+          pitch: hotspot.pitch
+        });
       });
 
       // Create Modal hotspots.
-      data.modalHotspots.forEach(function(hotspot) {
+      data.modalHotspots.forEach(function (hotspot) {
         var element = createModalHotspotElement(hotspot);
-        scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+        scene.hotspotContainer().createHotspot(element, {
+          yaw: hotspot.yaw,
+          pitch: hotspot.pitch
+        });
       });
 
       // create role hotspots
-      data.roleHotspots.forEach(function (hotspot){
+      data.roleHotspots.forEach(function (hotspot) {
         var element = createRoleHotspotElement(hotspot);
-        scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+        scene.hotspotContainer().createHotspot(element, {
+          yaw: hotspot.yaw,
+          pitch: hotspot.pitch
+        });
       });
 
       // create direction hotspots
-      data.directions.forEach(function (hotspot){
+      data.directions.forEach(function (hotspot) {
         var element = createDirectionsHotspot(hotspot);
-        scene.hotspotContainer().createHotspot(element, { yaw: hotspot.yaw, pitch: hotspot.pitch });
+        scene.hotspotContainer().createHotspot(element, {
+          yaw: hotspot.yaw,
+          pitch: hotspot.pitch
+        });
       });
 
       return {
@@ -236,9 +256,9 @@
     });
 
     // Set handler for scene switch.
-    scenes.forEach(function(scene) {
+    scenes.forEach(function (scene) {
       var el = document.querySelector('#sceneList .scene[data-id="' + scene.data.id + '"]');
-      el.addEventListener('click', function() {
+      el.addEventListener('click', function () {
         switchScene(scene);
 
         // On mobile, hide scene list after selecting a scene.
@@ -250,7 +270,7 @@
 
     //dom elements for welcome modal
     var welcomeTitleElement = document.querySelector("#welcomeTitle");
-    var welcomeDescElement  = document.querySelector("#welcomeDescription");
+    var welcomeDescElement = document.querySelector("#welcomeDescription");
     var objectivesElement = document.querySelector("#objectives");
     var creditsElement = document.querySelector("#credits");
     var welcomeModal = document.querySelector(".welcome");
@@ -268,11 +288,11 @@
     var autorotate = Marzipano.autorotate({
       yawSpeed: 0.04,
       targetPitch: 0,
-      targetFov: Math.PI/2
+      targetFov: Math.PI / 2
     });
     if (data.settings.autorotateEnabled) {
       autorotateToggleElement.classList.add('enabled');
-       startAutorotate();
+      startAutorotate();
 
     }
 
@@ -292,20 +312,20 @@
 
     // Start with the scene list open on desktop.
     if (!document.body.classList.contains('mobile')) {
-      document.querySelector("#welcome-modal .info-hotspot-close-wrapper").addEventListener("click", function(){
+      document.querySelector("#welcome-modal .info-hotspot-close-wrapper").addEventListener("click", function () {
         showSceneList();
       })
 
 
-      if (document.querySelector(".info-hotspot-modal.welcome .start-btn")){
-          document.querySelector(".info-hotspot-modal.welcome .start-btn").addEventListener("click", function(){
-            showSceneList();
+      if (document.querySelector(".info-hotspot-modal.welcome .start-btn")) {
+        document.querySelector(".info-hotspot-modal.welcome .start-btn").addEventListener("click", function () {
+          showSceneList();
         })
       }
 
-      } else {
-        hideSceneList();
-      }
+    } else {
+      hideSceneList();
+    }
 
     // DOM elements for view controls.
     var viewUpElement = document.querySelector('#viewUp');
@@ -321,12 +341,12 @@
 
     // Associate view controls with elements.
     var controls = viewer.controls();
-    controls.registerMethod('upElement',    new Marzipano.ElementPressControlMethod(viewUpElement,     'y', -velocity, friction), true);
-    controls.registerMethod('downElement',  new Marzipano.ElementPressControlMethod(viewDownElement,   'y',  velocity, friction), true);
-    controls.registerMethod('leftElement',  new Marzipano.ElementPressControlMethod(viewLeftElement,   'x', -velocity, friction), true);
-    controls.registerMethod('rightElement', new Marzipano.ElementPressControlMethod(viewRightElement,  'x',  velocity, friction), true);
-    controls.registerMethod('inElement',    new Marzipano.ElementPressControlMethod(viewInElement,  'zoom', -velocity, friction), true);
-    controls.registerMethod('outElement',   new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom',  velocity, friction), true);
+    controls.registerMethod('upElement', new Marzipano.ElementPressControlMethod(viewUpElement, 'y', -velocity, friction), true);
+    controls.registerMethod('downElement', new Marzipano.ElementPressControlMethod(viewDownElement, 'y', velocity, friction), true);
+    controls.registerMethod('leftElement', new Marzipano.ElementPressControlMethod(viewLeftElement, 'x', -velocity, friction), true);
+    controls.registerMethod('rightElement', new Marzipano.ElementPressControlMethod(viewRightElement, 'x', velocity, friction), true);
+    controls.registerMethod('inElement', new Marzipano.ElementPressControlMethod(viewInElement, 'zoom', -velocity, friction), true);
+    controls.registerMethod('outElement', new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom', velocity, friction), true);
 
     function sanitize(s) {
       return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
@@ -344,10 +364,10 @@
 
 
       if (objectives) {
-        objectives.forEach(function(objective){
-        var objEl = document.createElement("li");
-        objEl.innerHTML = objective.text;
-        objectivesElement.append(objEl);
+        objectives.forEach(function (objective) {
+          var objEl = document.createElement("li");
+          objEl.innerHTML = objective.text;
+          objectivesElement.append(objEl);
 
         });
       }
@@ -355,71 +375,71 @@
       if (credits) {
         var creditsBtn = document.querySelector("#creditsBtn");
 
-        if(creditsBtn) {
+        if (creditsBtn) {
           creditsBtn.classList.remove("hide");
 
-          creditsBtn.addEventListener("click", function(){
+          creditsBtn.addEventListener("click", function () {
             creditsElement.classList.toggle("hide");
           })
 
-         credits.forEach(function(credit) {
-           var creditEl = document.createElement("li");
-           creditEl.innerHTML = credit.name + ", " + credit.title;
-           creditsElement.append(creditEl);
+          credits.forEach(function (credit) {
+            var creditEl = document.createElement("li");
+            creditEl.innerHTML = credit.name + ", " + credit.title;
+            creditsElement.append(creditEl);
           });
         }
       }
 
       var hide = function () {
 
-         welcomeModal.classList.remove('visible');
+        welcomeModal.classList.remove('visible');
 
-       };
-       // Hide content when close icon is clicked.
-       document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', function() {
-         hide();
-         if(document.querySelector("footer")){
-           document.querySelector("footer").classList.toggle("visible");
-         }
-         if(data.settings.autorotateEnabled) {
-           autorotateToggleElement.classList.add('enabled');
-           startAutorotate();
+      };
+      // Hide content when close icon is clicked.
+      document.querySelector('.welcome .info-hotspot-close-wrapper').addEventListener('click', function () {
+        hide();
+        if (document.querySelector("footer")) {
+          document.querySelector("footer").classList.toggle("visible");
         }
-       });
+        if (data.settings.autorotateEnabled) {
+          autorotateToggleElement.classList.add('enabled');
+          startAutorotate();
+        }
+      });
 
-       objectiveToggleElement.addEventListener('click', function() {
-         var welcomeModalElement = document.querySelector(".welcome");
-         welcomeModalElement.classList.toggle('visible');
-         if(document.querySelector("footer")){
-           document.querySelector("footer").classList.toggle("visible");
-         }
-       });
+      objectiveToggleElement.addEventListener('click', function () {
+        var welcomeModalElement = document.querySelector(".welcome");
+        welcomeModalElement.classList.toggle('visible');
+        if (document.querySelector("footer")) {
+          document.querySelector("footer").classList.toggle("visible");
+        }
+      });
 
-       var welcomeButton = document.querySelector("#welcome-modal .start-btn button");
-       var pretest = data.settings.pretest.enable;
+      var welcomeButton = document.querySelector("#welcome-modal .start-btn button");
+      var pretest = data.settings.pretest.enable;
 
 
-       if(welcomeButton) {
-         welcomeButton.type = "button";
-         welcomeButton.addEventListener('click', function() {
-           hide();
-          if(data.settings.autorotateEnabled) {
-           autorotateToggleElement.classList.add('enabled');
-           startAutorotate();
+      if (welcomeButton) {
+        welcomeButton.type = "button";
+        welcomeButton.addEventListener('click', function () {
+          hide();
+          if (data.settings.autorotateEnabled) {
+            autorotateToggleElement.classList.add('enabled');
+            startAutorotate();
           }
         });
 
-       if (pretest) {
+        if (pretest) {
 
-         preTestBtn(welcomeButton);
+          preTestBtn(welcomeButton);
 
-       } else {
-         welcomeButton.innerHTML = "Start Tour";
-       }
-     }
-       welcomeModal.classList.add("visible");
+        } else {
+          welcomeButton.innerHTML = "Start Tour";
+        }
+      }
+      welcomeModal.classList.add("visible");
 
-       saveSceneListStatus();
+      saveSceneListStatus();
     }
 
     function switchScene(scene) {
@@ -436,9 +456,9 @@
         });
         firstLoad = false;
       } else {
-      scene.scene.switchTo({
-        transitionDuration: 1000,
-        transitionUpdate: fun(ease)
+        scene.scene.switchTo({
+          transitionDuration: 1000,
+          transitionUpdate: fun(ease)
         });
       }
 
@@ -494,16 +514,16 @@
     }
 
     function updateMapOrientation(rotation) {
-      if(!rotation) rotation = 0;
+      if (!rotation) rotation = 0;
       //Add rotation transform to map indicator
       var mapEl = document.querySelector("#point svg");
-      mapEl.style.transform = "rotate("+rotation+"deg)";
+      mapEl.style.transform = "rotate(" + rotation + "deg)";
     }
 
     var positionUpdateTimeout;
-    viewer.addEventListener('viewChange', function(e) {
+    viewer.addEventListener('viewChange', function (e) {
       //Take incoming yaw in radians and convert to degrees to set map orientation
-      updateMapOrientation(180*viewer.view().yaw()/Math.PI)
+      updateMapOrientation(180 * viewer.view().yaw() / Math.PI)
     });
 
     function showSceneList() {
@@ -573,22 +593,22 @@
 
 
       // Set rotation transform.
-      var transformProperties = [ '-ms-transform', '-webkit-transform', 'transform' ];
+      var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
       for (var i = 0; i < transformProperties.length; i++) {
         var property = transformProperties[i];
         icon.style[property] = 'rotate(' + hotspot.rotation + 'rad)';
       }
 
       // Add click event handler.
-      wrapper.addEventListener('click', function() {
+      wrapper.addEventListener('click', function () {
 
         if (hotspot.back) {
 
-          switchSceneBack( findSceneById(hotspot.target), hotspot.back );
+          switchSceneBack(findSceneById(hotspot.target), hotspot.back);
 
         } else {
 
-          switchScene( findSceneById(hotspot.target) );
+          switchScene(findSceneById(hotspot.target));
 
         }
 
@@ -631,7 +651,7 @@
       // icon.src = 'img/info.png';
       // icon.classList.add('info-hotspot-icon');
       var icon = document.createElement('i');
-      icon.classList.add('fas' , 'fa-info', 'fa-2x');
+      icon.classList.add('fas', 'fa-info', 'fa-2x');
       iconWrapper.appendChild(icon);
 
 
@@ -674,7 +694,7 @@
       modal.classList.add('info-hotspot-modal');
       document.body.appendChild(modal);
 
-      var toggle = function() {
+      var toggle = function () {
         wrapper.classList.toggle('visible');
         modal.classList.toggle('visible');
 
@@ -720,7 +740,7 @@
       titleWrapper.classList.add('info-hotspot-title-wrapper');
       var title = document.createElement('div');
       title.classList.add('info-hotspot-title');
-      title.innerHTML =  hotspot.title;
+      title.innerHTML = hotspot.title;
       titleWrapper.appendChild(title);
 
       // Create close element.
@@ -740,13 +760,13 @@
       var image = document.createElement('div');
       var modalImages = hotspot.images;
 
-      if (modalImages.length>1){
+      if (modalImages.length > 1) {
 
         image.classList.add('slider')
         var figureEl = document.createElement('figure');
 
         //add each image to parent div
-        modalImages.forEach ( function (image) {
+        modalImages.forEach(function (image) {
           var imageSrc = image.imageURL;
           var imageAlt = image.alt;
           var imageText = image.text;
@@ -754,13 +774,13 @@
           var imageNum = modalImages.indexOf(image) + 1;
           var totalImages = modalImages.length;
           if (imageText) {
-            imageTextEl.innerHTML = image.text + " (" + imageNum + " of " + totalImages + ") " ;
+            imageTextEl.innerHTML = image.text + " (" + imageNum + " of " + totalImages + ") ";
           } else {
-            imageTextEl.innerHTML = " (" + imageNum + " of " + totalImages + ") " ;
+            imageTextEl.innerHTML = " (" + imageNum + " of " + totalImages + ") ";
           }
           var imageEl = document.createElement('img');
           imageEl.src = imageSrc;
-          imageEl.alt= imageAlt;
+          imageEl.alt = imageAlt;
           figureEl.appendChild(imageTextEl);
           figureEl.appendChild(imageEl);
 
@@ -799,7 +819,7 @@
       modalDesktop.classList.add('modal-hotspot-modal');
       document.body.appendChild(modalDesktop);
 
-      var toggle = function() {
+      var toggle = function () {
         wrapper.classList.toggle('visible');
         modal.classList.toggle('visible');
         modalDesktop.classList.toggle('visible');
@@ -807,14 +827,14 @@
       };
 
       // Show content when hotspot is clicked. save status of info panels
-      wrapper.querySelector('.info-hotspot-header').addEventListener('click', function() {
+      wrapper.querySelector('.info-hotspot-header').addEventListener('click', function () {
         saveSceneListStatus();
         toggle();
         hideSceneList();
       });
 
       // Hide content when close icon is clicked.
-      modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function() {
+      modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function () {
         if (sceneList.classList == "reopen") {
           toggle();
           showSceneList();
@@ -824,7 +844,7 @@
         }
 
       });
-      modalDesktop.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function() {
+      modalDesktop.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function () {
         if (sceneList.classList == "reopen") {
           toggle();
           showSceneList();
@@ -834,7 +854,7 @@
         }
       });
 
-      viewer.addEventListener('sceneChange', function() {
+      viewer.addEventListener('sceneChange', function () {
         modalDesktop.classList.remove('visible');
       });
 
@@ -864,7 +884,7 @@
       // icon.src = 'img/modal.png';
       //icon.classList.add('modal-hotspot-icon');
       var icon = document.createElement('i');
-      icon.classList.add('fas' , 'fa-user-md', 'fa-2x' ,  'modal-hotspot-icon');
+      icon.classList.add('fas', 'fa-user-md', 'fa-2x', 'modal-hotspot-icon');
       iconWrapper.appendChild(icon);
 
       // Create title element.
@@ -872,7 +892,7 @@
       titleWrapper.classList.add('info-hotspot-title-wrapper');
       var title = document.createElement('div');
       title.classList.add('info-hotspot-title');
-      title.innerHTML =  hotspot.title;
+      title.innerHTML = hotspot.title;
       titleWrapper.appendChild(title);
 
       // Create close element.
@@ -918,7 +938,7 @@
       modalDesktop.classList.add('modal-hotspot-modal');
       document.body.appendChild(modalDesktop);
 
-      var toggle = function() {
+      var toggle = function () {
         wrapper.classList.toggle('visible');
         modal.classList.toggle('visible');
         modalDesktop.classList.toggle('visible');
@@ -926,14 +946,14 @@
 
       };
 
-      wrapper.querySelector('.info-hotspot-header').addEventListener('click', function() {
+      wrapper.querySelector('.info-hotspot-header').addEventListener('click', function () {
         saveSceneListStatus();
         toggle();
         hideSceneList();
       });
 
       // Hide content when close icon is clicked.
-      modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function() {
+      modal.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function () {
         if (sceneList.classList == "reopen") {
           toggle();
           showSceneList();
@@ -942,7 +962,7 @@
           toggle();
         }
       });
-      modalDesktop.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function() {
+      modalDesktop.querySelector('.info-hotspot-close-wrapper').addEventListener('click', function () {
         if (sceneList.classList == "reopen") {
           toggle();
           showSceneList();
@@ -968,28 +988,28 @@
       var arrows = document.createElement('div');
       arrows.classList.add('arrowAnim');
 
-       arrows.innerHTML = '<div class="arrowSliding-left"><div class="arrow"></div></div><div class="arrowSliding-left delay1"><div class="arrow"></div></div><div class="arrowSliding-left delay2"><div class="arrow"></div></div><div class="arrowSliding-left delay3"><div class="arrow"></div></div>';
+      arrows.innerHTML = '<div class="arrowSliding-left"><div class="arrow"></div></div><div class="arrowSliding-left delay1"><div class="arrow"></div></div><div class="arrowSliding-left delay2"><div class="arrow"></div></div><div class="arrowSliding-left delay3"><div class="arrow"></div></div>';
 
 
       // Set rotation transform.
-      var transformProperties = [ '-ms-transform', '-webkit-transform', 'transform' ];
+      var transformProperties = ['-ms-transform', '-webkit-transform', 'transform'];
       var rotation = 0;
 
-      switch(direction) {
-          case "right":
-              rotation = -180;
-              break;
-          case "left":
-              rotation = 0;
-              break;
-          case "up":
-              rotation = -270;
-              break;
-          case "down":
-              rotation = -90;
-              break;
-          default:
-              rotation = 0;
+      switch (direction) {
+        case "right":
+          rotation = -180;
+          break;
+        case "left":
+          rotation = 0;
+          break;
+        case "up":
+          rotation = -270;
+          break;
+        case "down":
+          rotation = -90;
+          break;
+        default:
+          rotation = 0;
       }
 
       for (var i = 0; i < transformProperties.length; i++) {
@@ -998,7 +1018,7 @@
       }
 
       // Add click event handler.
-      wrapper.addEventListener('click', function() {
+      wrapper.addEventListener('click', function () {
 
       });
 
@@ -1018,11 +1038,11 @@
       return wrapper;
     }
 
-    function closeOtherHotspots (hotspot) {
+    function closeOtherHotspots(hotspot) {
 
     }
 
-    function closeAllHotspots (){
+    function closeAllHotspots() {
 
     }
 
@@ -1046,10 +1066,11 @@
 
     // Prevent touch and scroll events from reaching the parent element.
     function stopTouchAndScrollEventPropagation(element, eventList) {
-      var eventList = [ 'touchstart', 'touchmove', 'touchend', 'touchcancel',
-                        'wheel', 'mousewheel' ];
+      var eventList = ['touchstart', 'touchmove', 'touchend', 'touchcancel',
+        'wheel', 'mousewheel'
+      ];
       for (var i = 0; i < eventList.length; i++) {
-        element.addEventListener(eventList[i], function(event) {
+        element.addEventListener(eventList[i], function (event) {
           event.stopPropagation();
         });
       }
@@ -1058,7 +1079,7 @@
   }
   //------------------- end tour viewer
 
-  function saveSceneListStatus () {
+  function saveSceneListStatus() {
     var sceneList = document.querySelector("#sceneList");
 
     if (sceneList.classList == "enabled") {
@@ -1077,39 +1098,39 @@
   function hotspotVisited() {
     //make hotspot counter visible
     counterElement.classList.remove("hide");
-      var icon = '<i class="fas fa-check-circle green"></i>';
-      var elements =  document.querySelectorAll(".hotspot.info-hotspot");
-      hotspotsTotal = elements.length;
+    var icon = '<i class="fas fa-check-circle green"></i>';
+    var elements = document.querySelectorAll(".hotspot.info-hotspot");
+    hotspotsTotal = elements.length;
 
-      document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
+    document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
 
-      elements.forEach(function (hotspot) {
+    elements.forEach(function (hotspot) {
 
-        hotspot.addEventListener("click", function(e){
-           var target = ( e.currentTarget ) ? e.currentTarget : e.srcElement;
-           var newEl = document.createElement("i");
-           newEl.classList.add('fas' , 'fa-check-circle', 'visited');
-
-
-          if ( !target.parentNode.classList.contains('clicked') ) {
-            target.appendChild(newEl);
-            target.classList.add("clicked");
-          }
-
-            var hotspotClickedElements = document.body.querySelectorAll(".clicked");
-            hotspotsClicked = hotspotClickedElements.length;
-
-            document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal;
-
-            if ((hotspotsTotal == hotspotsClicked) && data.settings.posttest.enable) {
+      hotspot.addEventListener("click", function (e) {
+        var target = (e.currentTarget) ? e.currentTarget : e.srcElement;
+        var newEl = document.createElement("i");
+        newEl.classList.add('fas', 'fa-check-circle', 'visited');
 
 
-              postTestBtn(document.body.querySelector("#hotspotCounter"));
-              data.settings.posttest.enable = false;
-            }
-        });
+        if (!target.parentNode.classList.contains('clicked')) {
+          target.appendChild(newEl);
+          target.classList.add("clicked");
+        }
+
+        var hotspotClickedElements = document.body.querySelectorAll(".clicked");
+        hotspotsClicked = hotspotClickedElements.length;
+
+        document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal;
+
+        if ((hotspotsTotal == hotspotsClicked) && data.settings.posttest.enable) {
+
+
+          postTestBtn(document.body.querySelector("#hotspotCounter"));
+          data.settings.posttest.enable = false;
+        }
       });
-    }
+    });
+  }
 
   function preTestBtn(welcomeButton) {
     var pretestURL = data.settings.pretest.url;
@@ -1142,23 +1163,23 @@
     el.appendChild(postTestForm);
   }
 
-  function debugVisted(){
+  function debugVisted() {
 
     var icon = '<i class="fas fa-check-circle green"></i>';
-    var elements =  document.querySelectorAll(".hotspot.info-hotspot");
+    var elements = document.querySelectorAll(".hotspot.info-hotspot");
     hotspotsTotal = elements.length;
 
-    document.querySelector("#debugBtn button").addEventListener("click" , function() {
+    document.querySelector("#debugBtn button").addEventListener("click", function () {
       console.log("debug: " + hotspotsTotal + " hotspots visted.");
 
       elements.forEach(function (hotspot) {
-           var newEl = document.createElement("i");
-           newEl.classList.add('fas' , 'fa-check-circle', 'visited');
+        var newEl = document.createElement("i");
+        newEl.classList.add('fas', 'fa-check-circle', 'visited');
 
-          //if ( !hotspot.parentNode.classList.contains('clicked') ) {
-            hotspot.appendChild(newEl);
-            hotspot.classList.add("clicked");
-          //}
+        //if ( !hotspot.parentNode.classList.contains('clicked') ) {
+        hotspot.appendChild(newEl);
+        hotspot.classList.add("clicked");
+        //}
 
       });
       var hotspotClickedElements = document.body.querySelectorAll(".clicked");
@@ -1166,7 +1187,7 @@
       document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal;
     });
 
-}
+  }
 
   function hideHint() {
     document.querySelector("#hint").classList.add("hide");
@@ -1176,11 +1197,11 @@
     document.querySelector("#hint").classList.remove("hide");
   }
   // Display the initial scene.
-  document.addEventListener("DOMContentLoaded", function(event) {
+  document.addEventListener("DOMContentLoaded", function (event) {
     if (document.querySelector("#debugBtn")) {
       debugVisted();
     };
-    if (data.settings.introVideo.enable){
+    if (data.settings.introVideo.enable) {
       showHint();
       createVideo();
     } else {
