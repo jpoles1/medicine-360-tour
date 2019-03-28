@@ -183,12 +183,16 @@
     }, {})
   }
   var hotspotsByScene = hotspotsBySceneLookup();
-  function updateSceneCompletionCounter(sceneID) {
+  function updateSceneCompletionCounter(sceneID, initializing) {
     var sceneHotspots = hotspotsByScene[sceneID]
     var el = document.querySelector('#sceneList .scene[data-id="' + sceneID + '"] .sceneCompletionCount ')
     var clickedCount = document.querySelectorAll('.hotspot[data-scene-id="' + sceneID + '"].clicked ').length
     if(el && sceneHotspots.hotspotCount > 0){
       el.innerHTML = "  (" + clickedCount + "/" + sceneHotspots.hotspotCount + ")"
+    }
+    if((sceneHotspots.hotspotCount > 0 || !initializing) && clickedCount == sceneHotspots.hotspotCount){
+      var playBtnElem = document.querySelector('#sceneList .scene[data-id="' + sceneID + '"] i')
+      if(playBtnElem) playBtnElem.style["color"] = "#8f8f8f"
     }
   }
   function writeSceneNames(){
@@ -204,7 +208,7 @@
     }, "")
     document.querySelector("#sceneList .scenes").innerHTML = sceneNameMarkup
     data.scenes.map((scene) => {
-      updateSceneCompletionCounter(scene.id)
+      updateSceneCompletionCounter(scene.id, true)
     })
   }
   function createTour() {
@@ -527,6 +531,7 @@
     }
 
     function updateSceneName(scene) {
+      updateSceneCompletionCounter(scene.data.id)
       sceneNameElement.innerHTML = sanitize(scene.data.name);
     }
 
