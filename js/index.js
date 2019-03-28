@@ -171,7 +171,46 @@
     // ------------------ end video viewer
   }
   // ------------------ start tour viewer
+  function hotspotsBySceneLookup() {
+    return data.scenes.reduce(function (aggr, sceneEntry) {
+      aggr[sceneEntry.id] = {
+        infoHotspots: sceneEntry.infoHotspots,
+        modalHotspots: sceneEntry.modalHotspots,
+        roleHotspots: sceneEntry.roleHotspots,
+        hotspotCount: sceneEntry.infoHotspots.length + sceneEntry.modalHotspots.length + sceneEntry.roleHotspots.length,
+      }
+      return aggr
+    }, {})
+  }
+  var hotspotsByScene = hotspotsBySceneLookup();
+  function updateSceneCompletionCounter(sceneID) {
+    var sceneHotspots = hotspotsByScene[sceneID]
+    var el = document.querySelector('#sceneList .scene[data-id="' + sceneID + '"] .sceneCompletionCount ')
+    var clickedCount = document.querySelectorAll('.hotspot[data-scene-id="' + sceneID + '"].clicked ').length
+    if(el && sceneHotspots.hotspotCount > 0){
+      el.innerHTML = "  (" + clickedCount + "/" + sceneHotspots.hotspotCount + ")"
+    }
+  }
+  function writeSceneNames(){
+    var sceneNameMarkup = data.scenes.reduce(function(aggr, scene){
+      return aggr + 
+        '<a href="#" class="scene" data-id="' + scene.id + '">' +
+          '<li class="text">' + 
+            (scene.short_name ? scene.short_name : scene.name) + 
+            '<span class="sceneCompletionCount"></span>' +
+            '<i style="float: right; margin-top: 6px;" class="fas fa-chevron-circle-right"></i>' +
+          '</li>' +
+        '</a>'
+    }, "")
+    document.querySelector("#sceneList .scenes").innerHTML = sceneNameMarkup
+    data.scenes.map((scene) => {
+      updateSceneCompletionCounter(scene.id)
+    })
+  }
   function createTour() {
+    //Write out nav
+    writeSceneNames();
+
     // Viewer options.
 
 
@@ -205,7 +244,7 @@
 
       // Create link hotspots.
       data.linkHotspots.forEach(function (hotspot) {
-        var element = createLinkHotspotElement(hotspot);
+        var element = createLinkHotspotElement(hotspot, data.id);
         scene.hotspotContainer().createHotspot(element, {
           yaw: hotspot.yaw,
           pitch: hotspot.pitch
@@ -214,7 +253,7 @@
 
       // Create info hotspots.
       data.infoHotspots.forEach(function (hotspot) {
-        var element = createInfoHotspotElement(hotspot);
+        var element = createInfoHotspotElement(hotspot, data.id);
         scene.hotspotContainer().createHotspot(element, {
           yaw: hotspot.yaw,
           pitch: hotspot.pitch
@@ -223,7 +262,7 @@
 
       // Create Modal hotspots.
       data.modalHotspots.forEach(function (hotspot) {
-        var element = createModalHotspotElement(hotspot);
+        var element = createModalHotspotElement(hotspot, data.id);
         scene.hotspotContainer().createHotspot(element, {
           yaw: hotspot.yaw,
           pitch: hotspot.pitch
@@ -232,7 +271,7 @@
 
       // create role hotspots
       data.roleHotspots.forEach(function (hotspot) {
-        var element = createRoleHotspotElement(hotspot);
+        var element = createRoleHotspotElement(hotspot, data.id);
         scene.hotspotContainer().createHotspot(element, {
           yaw: hotspot.yaw,
           pitch: hotspot.pitch
@@ -241,7 +280,7 @@
 
       // create direction hotspots
       data.directions.forEach(function (hotspot) {
-        var element = createDirectionsHotspot(hotspot);
+        var element = createDirectionsHotspot(hotspot, data.id);
         scene.hotspotContainer().createHotspot(element, {
           yaw: hotspot.yaw,
           pitch: hotspot.pitch
@@ -631,14 +670,14 @@
       return wrapper;
     }
 
-    function createInfoHotspotElement(hotspot) {
+    function createInfoHotspotElement(hotspot, sceneID) {
 
       // Create wrapper element to hold icon and tooltip.
       var wrapper = document.createElement('div');
       wrapper.classList.add('hotspot');
       wrapper.classList.add('info-hotspot');
       wrapper.classList.add('info-text');
-
+      wrapper.setAttribute("data-scene-id", sceneID)
 
       // Create hotspot/tooltip header.
       var header = document.createElement('div');
@@ -713,13 +752,14 @@
       return wrapper;
     }
 
-    function createModalHotspotElement(hotspot) {
+    function createModalHotspotElement(hotspot, sceneID) {
 
       // Create wrapper element to hold icon and tooltip.
       var wrapper = document.createElement('div');
       wrapper.classList.add('hotspot');
       wrapper.classList.add('info-hotspot');
       wrapper.classList.add('modal-hotspot');
+      wrapper.setAttribute("data-scene-id", sceneID)
 
       // Create hotspot/tooltip header.
       var header = document.createElement('div');
@@ -865,13 +905,14 @@
       return wrapper;
     }
 
-    function createRoleHotspotElement(hotspot) {
+    function createRoleHotspotElement(hotspot, sceneID) {
 
       // Create wrapper element to hold icon and tooltip.
       var wrapper = document.createElement('div');
       wrapper.classList.add('hotspot');
       wrapper.classList.add('info-hotspot');
       wrapper.classList.add('modal-hotspot');
+      wrapper.setAttribute("data-scene-id", sceneID)
 
       // Create hotspot/tooltip header.
       var header = document.createElement('div');
@@ -1095,6 +1136,10 @@
   var hotspotsTotal = 0;
   var hotspotsClicked = 0;
 
+  function updateHotspotTotalCounter() {
+    document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
+  }
+
   function hotspotVisited() {
     //make hotspot counter visible
     counterElement.classList.remove("hide");
@@ -1102,10 +1147,9 @@
     var elements = document.querySelectorAll(".hotspot.info-hotspot");
     hotspotsTotal = elements.length;
 
-    document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal
+    updateHotspotTotalCounter()
 
     elements.forEach(function (hotspot) {
-
       hotspot.addEventListener("click", function (e) {
         var target = (e.currentTarget) ? e.currentTarget : e.srcElement;
         var newEl = document.createElement("i");
@@ -1120,7 +1164,10 @@
         var hotspotClickedElements = document.body.querySelectorAll(".clicked");
         hotspotsClicked = hotspotClickedElements.length;
 
-        document.querySelector("#hotspotCounter span").innerHTML = hotspotsClicked + "/" + hotspotsTotal;
+        updateHotspotTotalCounter();
+
+        //Hotspot scene tracking
+        updateSceneCompletionCounter(hotspot.getAttribute("data-scene-id"));
 
         if ((hotspotsTotal == hotspotsClicked) && data.settings.posttest.enable) {
 

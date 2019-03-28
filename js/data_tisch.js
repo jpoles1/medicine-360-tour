@@ -3,6 +3,7 @@ var APP_DATA = {
     {
       "id": "0-17th_floor_lobby_center",
       "name": "17th Floor Lobby Center",
+      "short_name": "TH17 Lobby",
       "levels": [
         {
           "tileSize": 256,
@@ -64,6 +65,7 @@ var APP_DATA = {
     {
       "id": "1-17th_floor_lobby_west",
       "name": "17th Floor Lobby West",
+      "short_name": "TH17 Lobby W",
       "levels": [
         {
           "tileSize": 256,
@@ -110,6 +112,7 @@ var APP_DATA = {
     {
       "id": "2-conference_room",
       "name": "Conference Room",
+      "short_name": "Conference Room",
       "levels": [
         {
           "tileSize": 256,
@@ -175,6 +178,7 @@ var APP_DATA = {
     {
       "id": "3-east_west_entrance",
       "name": "East West Entrance",
+      "short_name": "E+W Entrance",
       "levels": [
         {
           "tileSize": 256,
