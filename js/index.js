@@ -183,34 +183,52 @@
     }, {})
   }
   var hotspotsByScene = hotspotsBySceneLookup();
+
   function updateSceneCompletionCounter(sceneID, initializing) {
     var sceneHotspots = hotspotsByScene[sceneID]
     var el = document.querySelector('#sceneList .scene[data-id="' + sceneID + '"] .sceneCompletionCount ')
     var clickedCount = document.querySelectorAll('.hotspot[data-scene-id="' + sceneID + '"].clicked ').length
-    if(el && sceneHotspots.hotspotCount > 0){
+    if (el && sceneHotspots.hotspotCount > 0) {
       el.innerHTML = "  (" + clickedCount + "/" + sceneHotspots.hotspotCount + ")"
     }
-    if((sceneHotspots.hotspotCount > 0 || !initializing) && clickedCount == sceneHotspots.hotspotCount){
+    if ((sceneHotspots.hotspotCount > 0 || !initializing) && clickedCount == sceneHotspots.hotspotCount) {
       var playBtnElem = document.querySelector('#sceneList .scene[data-id="' + sceneID + '"] i')
-      if(playBtnElem) playBtnElem.style["color"] = "#8f8f8f"
+      if (playBtnElem) playBtnElem.style["color"] = "#8f8f8f"
     }
   }
-  function writeSceneNames(){
-    var sceneNameMarkup = data.scenes.reduce(function(aggr, scene){
-      return aggr + 
+
+  function getCompletionFractionString(sceneID) {
+    var sceneHotspots = hotspotsByScene[sceneID]
+    var clickedCount = document.querySelectorAll('.hotspot[data-scene-id="' + sceneID + '"].clicked ').length
+    return "  (" + clickedCount + "/" + sceneHotspots.hotspotCount + ")"
+  }
+
+  function sanitize(s) {
+    return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
+  }
+
+  function updateSceneName(scene) {
+    updateSceneCompletionCounter(scene.id)
+    sceneNameElement.innerHTML = sanitize(scene.name) + getCompletionFractionString(scene.id);
+  }
+
+  function writeSceneNames() {
+    var sceneNameMarkup = configData.scenes.reduce(function (aggr, scene) {
+      return aggr +
         '<a href="#" class="scene" data-id="' + scene.id + '">' +
-          '<li class="text">' + 
-            (scene.short_name ? scene.short_name : scene.name) + 
-            '<span class="sceneCompletionCount"></span>' +
-            '<i style="float: right; margin-top: 6px;" class="fas fa-chevron-circle-right"></i>' +
-          '</li>' +
+        '<li class="text">' +
+        (scene.short_name ? scene.short_name : scene.name) +
+        '<span class="sceneCompletionCount"></span>' +
+        '<i style="float: right; margin-top: 6px;" class="fas fa-chevron-circle-right"></i>' +
+        '</li>' +
         '</a>'
     }, "")
     document.querySelector("#sceneList .scenes").innerHTML = sceneNameMarkup
-    data.scenes.map((scene) => {
+    configData.scenes.map((scene) => {
       updateSceneCompletionCounter(scene.id, true)
     })
   }
+
   function createTour() {
     //Write out nav
     writeSceneNames();
@@ -391,10 +409,6 @@
     controls.registerMethod('inElement', new Marzipano.ElementPressControlMethod(viewInElement, 'zoom', -velocity, friction), true);
     controls.registerMethod('outElement', new Marzipano.ElementPressControlMethod(viewOutElement, 'zoom', velocity, friction), true);
 
-    function sanitize(s) {
-      return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;');
-    }
-
 
     function buildWelcomeModal() {
       var title = configData.welcome.title;
@@ -506,7 +520,7 @@
       }
 
       startAutorotate();
-      updateSceneName(scene);
+      updateSceneName(scene.data);
       updateSceneList(scene);
       updateMapPosition(scene);
     }
@@ -528,11 +542,6 @@
       updateSceneName(scene);
       updateSceneList(scene);
       updateMapPosition(scene);
-    }
-
-    function updateSceneName(scene) {
-      updateSceneCompletionCounter(scene.data.id)
-      sceneNameElement.innerHTML = sanitize(scene.data.name);
     }
 
     function updateSceneList(scene) {
@@ -1091,7 +1100,7 @@
     function closeAllHotspots() {
 
     }
-    
+
     function findSceneById(id) {
       for (var i = 0; i < scenes.length; i++) {
         if (scenes[i].data.id === id) {
@@ -1172,9 +1181,12 @@
         updateHotspotTotalCounter();
 
         //Hotspot scene tracking
-        updateSceneCompletionCounter(hotspot.getAttribute("data-scene-id"));
+        var sceneEntry = configData.scenes.filter(function (x) {
+          return x.id == hotspot.getAttribute("data-scene-id")
+        });
+        if (sceneEntry[0]) updateSceneName(sceneEntry[0]);
 
-        if ((hotspotsTotal == hotspotsClicked) && data.settings.posttest.enable) {
+        if ((hotspotsTotal == hotspotsClicked) && configData.settings.posttest.enable) {
 
 
           postTestBtn(document.body.querySelector("#hotspotCounter"));
