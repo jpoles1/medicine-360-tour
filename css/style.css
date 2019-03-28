@@ -318,26 +318,26 @@ body.fullscreen-enabled.mobile #autorotateToggle {
 
 #sceneList {
   position: absolute;
-  top: 0;
+  top: 40px;
   left: -220px;
-  padding-top: 40px;
   width: 220px;
-  max-height: 100%;
+  max-height: calc(100vh - 40px - 56px - 220px);
   overflow-x: hidden;
   overflow-y: auto;
   margin-left: 0;
   -webkit-transition: margin-left 0.5s ease-in-out;
   transition: margin-left 0.5s ease-in-out;
+  background-color: rgb(58,68,84);
+  background-color: rgba(58,68,84,0.8);
 }
 
 .mobile #sceneList {
-  padding-top: 50px;
+  top: 50px;
+  max-height: calc(100vh - 40px - 154px);
 }
 
 #sceneList .scenes {
   width: 100%;
-  background-color: rgb(58,68,84);
-  background-color: rgba(58,68,84,0.8);
 }
 
 .mobile #sceneList {
