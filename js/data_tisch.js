@@ -595,7 +595,7 @@ var APP_DATA = {
   "name": "Medicine Orientation Virtual Tour",
   "welcome": {
     "title":"Medicine Virtual Tour - Tisch 17th Floor",
-    "description" : "Welcome to the Virtual Tour of the Medicine Floor in Tisch. This will provide you a sense of the space, materials and people you will meet when you arrive. Use your mouse or finger to move around the 360° images.",
+    "description" : "Welcome to the Virtual Tour of the Medicine Floor in Tisch. This will provide you a sense of the space, materials and people you will meet when you arrive. <u>Use your mouse or touchscreen to look around</u> the 360° images at each stop on the tour.",
     "objectives": [
       {
         "id": "01",
