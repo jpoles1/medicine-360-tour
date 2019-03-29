@@ -3,6 +3,7 @@ var APP_DATA = {
     {
       "id": "0-12th-floor-elevator",
       "name": "12th Floor Elevator",
+      "short_name": "KP12 Elevator",
       "levels": [
         {
           "tileSize": 256,
@@ -57,6 +58,7 @@ var APP_DATA = {
     {
       "id": "1-12th-floor-lobby",
       "name": "12th Floor Lobby",
+      "name": "KP12 Lobby",
       "levels": [
         {
           "tileSize": 256,
@@ -306,7 +308,8 @@ var APP_DATA = {
     },
     {
       "id": "5-central-station-north-01",
-      "name": "Central Station North 01",
+      "name": "Central Station North #1",
+      "short_name": "Central Stn #1",
       "levels": [
         {
           "tileSize": 256,
@@ -383,7 +386,8 @@ var APP_DATA = {
     },
     {
       "id": "6-central-station-north-02",
-      "name": "Central Station North 02",
+      "name": "Central Station North #2",
+      "short_name": "Central Stn #2",
       "levels": [
         {
           "tileSize": 256,
@@ -461,7 +465,8 @@ var APP_DATA = {
     },
     {
       "id": "7-central-station-north-03",
-      "name": "Central Station North 03",
+      "name": "Central Station North #3",
+      "short_name": "Central Stn #3",
       "levels": [
         {
           "tileSize": 256,
@@ -515,7 +520,8 @@ var APP_DATA = {
     },
     {
       "id": "8-central-station-north-04",
-      "name": "Central Station North 04",
+      "name": "Central Station North #4",
+      "short_name": "Central Stn #4",
       "levels": [
         {
           "tileSize": 256,
@@ -735,7 +741,7 @@ var APP_DATA = {
     },
     {
       "id": "11-room-12-05-02",
-      "name": "Room 12-05 02",
+      "name": "Room 12-05 #2",
       "levels": [
         {
           "tileSize": 256,
@@ -801,6 +807,7 @@ var APP_DATA = {
     {
       "id": "12-kimmel-north-view",
       "name": "Kimmel North View",
+      "short_name": "KP12 N View",
       "levels": [
         {
           "tileSize": 256,
@@ -860,6 +867,7 @@ var APP_DATA = {
     {
       "id": "13-room-12-05-interior",
       "name": "Room 12-05 Interior",
+      "short_name": "Room 12-05 Int",
       "levels": [
         {
           "tileSize": 256,
