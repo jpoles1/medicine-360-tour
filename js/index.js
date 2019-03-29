@@ -19,7 +19,7 @@
   var Marzipano = window.Marzipano;
   var bowser = window.bowser;
   var screenfull = window.screenfull;
-  var data = window.APP_DATA;
+  var configData = window.APP_DATA;
   var firstLoad = true;
 
   // Grab elements from DOM.
@@ -78,7 +78,7 @@
     var videoViewerOpts = {
       stageType: 'webgl',
       controls: {
-        mouseViewMode: data.settings.mouseViewMode
+        mouseViewMode: configData.settings.mouseViewMode
       }
     };
 
@@ -128,7 +128,7 @@
       started = true;
 
       introVideo = document.createElement('video');
-      introVideo.src = data.settings.introVideo.url;
+      introVideo.src = configData.settings.introVideo.url;
       introVideo.crossOrigin = 'anonymous';
 
       introVideo.autoplay = true;
@@ -172,7 +172,7 @@
   }
   // ------------------ start tour viewer
   function hotspotsBySceneLookup() {
-    return data.scenes.reduce(function (aggr, sceneEntry) {
+    return configData.scenes.reduce(function (aggr, sceneEntry) {
       aggr[sceneEntry.id] = {
         infoHotspots: sceneEntry.infoHotspots,
         modalHotspots: sceneEntry.modalHotspots,
@@ -220,14 +220,14 @@
 
     var viewerOpts = {
       controls: {
-        mouseViewMode: data.settings.mouseViewMode
+        mouseViewMode: configData.settings.mouseViewMode
       }
     };
 
     //attach the viewer to pano element
     var viewer = new Marzipano.Viewer(panoElement, viewerOpts);
     // Create scenes.
-    var scenes = data.scenes.map(function (data) {
+    var scenes = configData.scenes.map(function (data) {
       var urlPrefix = "tiles";
       var source = Marzipano.ImageUrlSource.fromString(
         urlPrefix + "/" + data.id + "/{z}/{f}/{y}/{x}.jpg", {
@@ -333,7 +333,7 @@
       targetPitch: 0,
       targetFov: Math.PI / 2
     });
-    if (data.settings.autorotateEnabled) {
+    if (configData.settings.autorotateEnabled) {
       autorotateToggleElement.classList.add('enabled');
       startAutorotate();
 
@@ -397,10 +397,10 @@
 
 
     function buildWelcomeModal() {
-      var title = data.welcome.title;
-      var description = data.welcome.description;
-      var objectives = data.welcome.objectives;
-      var credits = data.welcome.credits;
+      var title = configData.welcome.title;
+      var description = configData.welcome.description;
+      var objectives = configData.welcome.objectives;
+      var credits = configData.welcome.credits;
 
       welcomeTitleElement.innerHTML = title;
       welcomeDescElement.innerHTML = description;
@@ -444,7 +444,7 @@
         if (document.querySelector("footer")) {
           document.querySelector("footer").classList.toggle("visible");
         }
-        if (data.settings.autorotateEnabled) {
+        if (configData.settings.autorotateEnabled) {
           autorotateToggleElement.classList.add('enabled');
           startAutorotate();
         }
@@ -459,14 +459,14 @@
       });
 
       var welcomeButton = document.querySelector("#welcome-modal .start-btn button");
-      var pretest = data.settings.pretest.enable;
+      var pretest = configData.settings.pretest.enable;
 
 
       if (welcomeButton) {
         welcomeButton.type = "button";
         welcomeButton.addEventListener('click', function () {
           hide();
-          if (data.settings.autorotateEnabled) {
+          if (configData.settings.autorotateEnabled) {
             autorotateToggleElement.classList.add('enabled');
             startAutorotate();
           }
@@ -1091,7 +1091,7 @@
     function closeAllHotspots() {
 
     }
-
+    
     function findSceneById(id) {
       for (var i = 0; i < scenes.length; i++) {
         if (scenes[i].data.id === id) {
@@ -1102,9 +1102,9 @@
     }
 
     function findSceneDataById(id) {
-      for (var i = 0; i < data.scenes.length; i++) {
-        if (data.scenes[i].id === id) {
-          return data.scenes[i];
+      for (var i = 0; i < configData.scenes.length; i++) {
+        if (configData.scenes[i].id === id) {
+          return configData.scenes[i];
         }
       }
       return null;
@@ -1178,14 +1178,14 @@
 
 
           postTestBtn(document.body.querySelector("#hotspotCounter"));
-          data.settings.posttest.enable = false;
+          configData.settings.posttest.enable = false;
         }
       });
     });
   }
 
   function preTestBtn(welcomeButton) {
-    var pretestURL = data.settings.pretest.url;
+    var pretestURL = configData.settings.pretest.url;
     var welcomeButtonForm = document.querySelector("form.start-btn");
 
     welcomeButtonForm.action = pretestURL;
@@ -1199,7 +1199,7 @@
 
   function postTestBtn(el) {
 
-    var postTestUrl = data.settings.posttest.url;
+    var postTestUrl = configData.settings.posttest.url;
 
     var postTestBtn = document.createElement("button");
     var postTestForm = document.createElement("form");
@@ -1253,7 +1253,7 @@
     if (document.querySelector("#debugBtn")) {
       debugVisted();
     };
-    if (data.settings.introVideo.enable) {
+    if (configData.settings.introVideo.enable) {
       showHint();
       createVideo();
     } else {
